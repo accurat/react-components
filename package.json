@@ -1,0 +1,49 @@
+{
+  "name": "@accurat/react-components",
+  "version": "0.1.0",
+  "description": "Collection of React components used for Accurat projects.",
+  "main": "lib/react-components.js",
+  "author": "Luca Falasco <falasco.luca@gmail.com> (https://github.com/lucafalasco)",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "start": "styleguidist server",
+    "build": "accurapp-scripts build; rm lib/*.html lib/*.ico",
+    "build:styleguide": "styleguidist build",
+    "prepublishOnly": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/accurat/react-components"
+  },
+  "bugs": {
+    "url": "https://github.com/accurat/react-components/issues"
+  },
+  "keywords": ["react", "react-components", "ui", "styleguide"],
+  "contributors": [
+    "Luca Falasco <falasco.luca@gmail.com> (https://github.com/lucafalasco)",
+    "Cesare Soldini <cesare.soldini@gmail.com> (https://github.com/caesarsol)",
+    "Marco Vettorello <marco.vettorello@accurat.it> (https://github.com/markov00)",
+    "nkint <alberto.massa@accurat.it> (https://github.com/nkint)",
+    "Marco Fugaro <marco.fugaro@gmail.com> (https://github.com/marcofugaro)",
+    "YeasterEgg <l.d.mattiazzi@gmail.com> (https://github.com/YeasterEgg)"
+  ],
+  "devDependencies": {
+    "accurapp-scripts": "^3.2.9",
+    "eslint-config-accurapp": "^3.0.1",
+    "react-styleguidist": "^6.2.5",
+    "webpack-preset-accurapp": "^3.1.10"
+  },
+  "dependencies": {
+    "classnames": "^2.2.5",
+    "lodash": "^4.17.5",
+    "prop-types": "^15.6.0",
+    "react": "^16.2.0",
+    "react-custom-scrollbars": "^4.2.1",
+    "react-dom": "^16.2.0",
+    "tachyons": "^4.9.1",
+    "tachyons-plugin-accurat": "^0.0.1",
+    "webpack-blocks": "^1.0.0-rc.2",
+    "webpack-node-externals": "^1.6.0"
+  }
+}

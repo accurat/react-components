@@ -1,0 +1,23 @@
+/*
+* StyleGuide specific css
+*/
+
+body {
+  font-family: 'Roboto Mono', monospace;
+}
+
+footer {
+  display: none !important;
+}
+
+.rsg--toolbar-36 {
+  display: none;
+}
+
+.rsg--root-10 {
+  padding: 20px 0 !important;
+}
+
+.rsg--preview-34 {
+  margin-bottom: 25px !important;
+}
