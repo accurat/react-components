@@ -1,7 +1,7 @@
 const path = require('path')
 
 module.exports = {
-  title: '/||||/| React Components',
+  title: 'Accurat React Components',
   template: 'src/index.html',
   showCode: true,
   editorConfig: {

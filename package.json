@@ -9,7 +9,7 @@
   "scripts": {
     "start": "styleguidist server",
     "build": "accurapp-scripts build; rm lib/*.html lib/*.ico",
-    "build:styleguide": "styleguidist build",
+    "build:styleguide": "styleguidist build; cp public/favicon.ico docs/",
     "prepublishOnly": "npm run build"
   },
   "repository": {
