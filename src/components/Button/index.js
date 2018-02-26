@@ -11,7 +11,7 @@ export default class Button extends React.Component {
     children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
     disabled: PropTypes.bool,
     transparent: PropTypes.bool,
-    handleClick: PropTypes.func,
+    onClick: PropTypes.func,
     className: PropTypes.string,
     style: PropTypes.object,
   }
@@ -21,11 +21,11 @@ export default class Button extends React.Component {
     transparent: false,
     className: '',
     style: {},
-    handleClick: () => {},
+    onClick: () => {},
   }
 
   render() {
-    const { children, disabled, transparent, handleClick, className, style } = this.props
+    const { children, disabled, transparent, onClick, className, style } = this.props
     const classes = classNames(
       'flex justify-center items-center pointer ph3 pv1 outline-transparent',
       {
@@ -37,7 +37,7 @@ export default class Button extends React.Component {
     )
 
     return (
-      <button disabled={disabled} className={classes} style={style} onClick={handleClick}>
+      <button disabled={disabled} className={classes} style={style} onClick={onClick}>
         {children}
       </button>
     )
