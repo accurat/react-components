@@ -21,6 +21,7 @@ const checkEmailValidity = (validity) => {
   </FlexView>
 
   <TextInput type="number" className="w4 br-pill" defaultValue={4815162342} />
+
   <TextInput disabled className="w5" defaultValue='Disabled' />
 </FlexView>
 ```

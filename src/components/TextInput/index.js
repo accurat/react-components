@@ -1,6 +1,7 @@
 import React from 'react'
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
+import omit from 'lodash/omit'
 
 const disabledStyle = 'o-50 pointer-events-none'
 
@@ -12,21 +13,14 @@ export default class TextInput extends React.Component {
     value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     disabled: PropTypes.bool,
-    placeholder: PropTypes.string,
-    onBlur: PropTypes.func,
-    onFocus: PropTypes.func,
     onChange: PropTypes.func,
     checkValidity: PropTypes.func,
-    autoFocus: PropTypes.bool,
-    readOnly: PropTypes.bool,
   }
 
   static defaultProps = {
     className: '',
     style: {},
     type: 'text',
-    onBlur: () => {},
-    onFocus: () => {},
     onChange: () => {},
     checkValidity: () => {},
   }
@@ -38,39 +32,25 @@ export default class TextInput extends React.Component {
   }
 
   render() {
-    const {
-      className,
-      style,
-      type,
-      value,
-      defaultValue,
-      disabled,
-      placeholder,
-      onBlur,
-      onFocus,
-      autoFocus,
-      readOnly,
-    } = this.props
+    const { className, style, type, value, defaultValue, disabled } = this.props
 
     const classes = classNames('pa2 ba b--black input-reset outline-transparent', {
       [disabledStyle]: disabled,
       [className]: className,
     })
 
+    const props = omit(this.props, Object.keys(TextInput.propTypes))
+
     return (
       <input
+        {...props}
         className={classes}
         style={{ ...style, font: 'inherit' }}
         type={type}
         value={value}
         defaultValue={defaultValue}
         disabled={disabled}
-        placeholder={placeholder}
-        onBlur={onBlur}
-        onFocus={onFocus}
         onChange={this.handleChange}
-        autoFocus={autoFocus}
-        readOnly={readOnly}
       />
     )
   }
