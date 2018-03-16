@@ -34,7 +34,7 @@ export default class TextInput extends React.Component {
   render() {
     const { className, style, type, value, defaultValue, disabled } = this.props
 
-    const classes = classNames('pa2 ba b--black input-reset outline-transparent', {
+    const classes = classNames('pa2 ba b--black br1 input-reset outline-transparent', {
       [disabledStyle]: disabled,
       [className]: className,
     })
