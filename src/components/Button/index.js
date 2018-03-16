@@ -27,7 +27,7 @@ export default class Button extends React.Component {
   render() {
     const { children, disabled, transparent, onClick, className, style } = this.props
     const classes = classNames(
-      'flex justify-center items-center pointer ph3 pv1 outline-transparent',
+      'flex justify-center items-center pointer ph3 pv1 br1 outline-transparent',
       {
         [disabledStyle]: disabled,
         [transparentStyle]: transparent,

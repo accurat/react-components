@@ -68,7 +68,7 @@ export default class Select extends React.Component {
     } = this.props
     const { open } = this.state
 
-    const classes = classNames('flex justify-between items-center pa2 ba b--black pointer', {
+    const classes = classNames('flex justify-between items-center pa2 ba b--black br1 pointer', {
       [disabledStyle]: disabled,
       [className]: className,
     })
