@@ -1,5 +1,5 @@
 import 'tachyons'
-import 'tachyons-plugin-accurat'
+import 'tachyons-extra'
 
 export { default as Button } from 'components/Button'
 export { default as Checkbox } from 'components/Checkbox'

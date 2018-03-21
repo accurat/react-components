@@ -7587,9 +7587,9 @@ table@^3.7.8:
     slice-ansi "0.0.4"
     string-width "^2.0.0"
 
-tachyons-plugin-accurat@^0.0.1:
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/tachyons-plugin-accurat/-/tachyons-plugin-accurat-0.0.1.tgz#ffefd5c39e3a71458e28b22cfc47ad75bf2aa36a"
+tachyons-extra@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/tachyons-extra/-/tachyons-extra-1.0.1.tgz#7133763383574341cfa138c6146534687dbd760b"
 
 tachyons@^4.9.1:
   version "4.9.1"

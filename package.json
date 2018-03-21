@@ -47,7 +47,7 @@
     "react-custom-scrollbars": "^4.2.1",
     "react-dom": "^16.2.0",
     "tachyons": "^4.9.1",
-    "tachyons-plugin-accurat": "^0.0.1",
+    "tachyons-extra": "^1.0.1",
     "webpack-blocks": "^1.0.0-rc.2",
     "webpack-node-externals": "^1.6.0"
   }
