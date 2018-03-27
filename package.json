@@ -1,6 +1,6 @@
 {
   "name": "@accurat/react-components",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Collection of React components used for Accurat projects.",
   "main": "lib/react-components.js",
   "author": "Luca Falasco <falasco.luca@gmail.com> (https://github.com/lucafalasco)",
