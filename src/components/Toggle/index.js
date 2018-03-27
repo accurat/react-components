@@ -62,7 +62,7 @@ export default class Toggle extends React.Component {
             height: 20,
           }}>
           <div
-            className="absolute mv-auto bg-white br-100 top-0 bottom-0"
+            className="absolute center-vertical bg-white br-100 top-0 bottom-0"
             style={{
               width: 16,
               height: 16,
