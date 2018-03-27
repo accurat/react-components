@@ -9,7 +9,16 @@ export default class TextInput extends React.Component {
   static propTypes = {
     className: PropTypes.string,
     style: PropTypes.object,
-    type: PropTypes.oneOf(['text', 'email', 'tel', 'number', 'password']),
+    type: PropTypes.oneOf([
+      'text',
+      'email',
+      'password',
+      'number',
+      'tel',
+      'time',
+      'date',
+      'datetime-local',
+    ]),
     value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     disabled: PropTypes.bool,
