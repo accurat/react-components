@@ -38,21 +38,31 @@ export default class Select extends React.Component {
     open: this.props.open,
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.open !== this.state.open) {
-      this.setState({ open: nextProps.open })
-    }
-  }
+  container = null
 
-  handleClick = event => {
-    this.setState({ open: !this.state.open })
+  setOpen = () => {
+    this.setState({ open: true })
+    document.body.addEventListener('mouseup', this.handleOutsideClick, { passive: true })
+    this.props.onClick()
+  }
+  setClose = () => {
+    this.setState({ open: false })
+    document.body.removeEventListener('mouseup', this.handleOutsideClick)
     this.props.onClick()
   }
 
-  closePanel = () => {
-    if (this.props.autoclose) {
-      this.setState({ open: !this.state.open })
+  handleClick = event => {
+    const { open } = this.state
+    if (!open) {
+      this.setOpen()
+    } else {
+      this.setClose()
     }
+  }
+
+  handleOutsideClick = event => {
+    if (this.container.contains(event.target)) return
+    this.setClose()
   }
 
   render() {
@@ -80,18 +90,23 @@ export default class Select extends React.Component {
     })
 
     return (
-      <div className="relative">
-        <div onClick={this.handleClick} className={classes} style={style}>
-          <div>{label}</div>
+      <div
+        ref={el => { this.container = el }}
+        className="relative"
+      >
+
+        <button onClick={this.handleClick} className={classes} style={style}>
+          <span>{label}</span>
           <div className={`ml3 ${open ? 'rotate-180' : ''}`}>
             <DropdownSvg style={{ width: 10, height: 10, fill: dark ? 'white' : 'black' }} />
           </div>
-        </div>
+        </button>
+
         <div className={childrenClasses}>
           {scrollable ? (
             <Scrollbars className="h-100">
               {children.map((child, i) => (
-                <div key={i} onClick={this.closePanel}>
+                <div key={i} onClick={this.handleClick}>
                   {child}
                 </div>
               ))}
@@ -99,7 +114,7 @@ export default class Select extends React.Component {
           ) : (
             open &&
             children.map((child, i) => (
-              <div key={i} onClick={this.closePanel}>
+              <div key={i} onClick={this.handleClick}>
                 {child}
               </div>
             ))
