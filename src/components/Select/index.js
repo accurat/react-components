@@ -102,7 +102,7 @@ export default class Select extends React.Component {
         className="relative"
       >
 
-        <div id="select-wrapper" onClick={this.handleClick} className={classes} style={style}>
+        <div onClick={this.handleClick} className={classes} style={style}>
           <span>{label}</span>
           <div className={`ml3 ${open ? 'rotate-180' : ''}`}>
             <DropdownSvg style={{ width: 10, height: 10, fill: dark ? 'white' : 'black' }} />
