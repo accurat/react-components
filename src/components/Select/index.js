@@ -45,10 +45,15 @@ export default class Select extends React.Component {
     document.body.addEventListener('mouseup', this.handleOutsideClick, { passive: true })
     this.props.onClick()
   }
-  setClose = () => {
-    this.setState({ open: false })
-    document.body.removeEventListener('mouseup', this.handleOutsideClick)
-    this.props.onClick()
+
+  setClose = (event) => {
+    if (!this.props.autoclose && this.container.contains(event.target)) {
+      this.handleOutsideClick
+    } else {
+      this.setState({ open: false })
+      document.body.removeEventListener('mouseup', this.handleOutsideClick)
+      this.props.onClick()
+    }
   }
 
   handleClick = event => {
@@ -56,13 +61,13 @@ export default class Select extends React.Component {
     if (!open) {
       this.setOpen()
     } else {
-      this.setClose()
+      this.setClose(event)
     }
   }
 
   handleOutsideClick = event => {
     if (this.container.contains(event.target)) return
-    this.setClose()
+    this.setClose(event)
   }
 
   render() {
