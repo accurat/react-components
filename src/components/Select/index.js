@@ -56,10 +56,14 @@ export default class Select extends React.Component {
 
   handleClick = event => {
     const { open } = this.state
+    const { autoclose } = this.props
+
     if (!open) {
       this.setOpen()
+    } else if (autoclose) {
+      this.setClose()
     } else {
-      this.setClose(event)
+      this.props.onClick(event)
     }
   }
 
