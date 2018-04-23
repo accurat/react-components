@@ -48,6 +48,12 @@ export default class Select extends React.Component {
     document.body.removeEventListener('touchend', this.handleOutsideClick)
   }
 
+  container = null
+
+  setOpen = () => this.setState({ open: true })
+
+  setClose = () => this.setState({ open: false })
+
   handleClick = event => {
     const { open } = this.state
     if (!open) {
