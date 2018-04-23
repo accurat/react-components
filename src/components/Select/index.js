@@ -48,7 +48,7 @@ export default class Select extends React.Component {
 
   setClose = (event) => {
     if (!this.props.autoclose && this.container.contains(event.target)) {
-      this.handleOutsideClick
+      return null
     } else {
       this.setState({ open: false })
       document.body.removeEventListener('mouseup', this.handleOutsideClick)
