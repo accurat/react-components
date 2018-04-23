@@ -38,22 +38,14 @@ export default class Select extends React.Component {
     open: this.props.open,
   }
 
-  container = null
-
-  setOpen = () => {
-    this.setState({ open: true })
+  componentDidMount() {
     document.body.addEventListener('mouseup', this.handleOutsideClick, { passive: true })
-    this.props.onClick()
+    document.body.addEventListener('touchend', this.handleOutsideClick, { passive: true })
   }
 
-  setClose = (event) => {
-    if (!this.props.autoclose && this.container.contains(event.target)) {
-      return null
-    } else {
-      this.setState({ open: false })
-      document.body.removeEventListener('mouseup', this.handleOutsideClick)
-      this.props.onClick()
-    }
+  componentWillUnmount() {
+    document.body.removeEventListener('mouseup', this.handleOutsideClick)
+    document.body.removeEventListener('touchend', this.handleOutsideClick)
   }
 
   handleClick = event => {
