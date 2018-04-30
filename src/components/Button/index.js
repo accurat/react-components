@@ -1,6 +1,7 @@
 import React from 'react'
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
+import { omit } from 'lodash'
 
 const disabledStyle = 'o-50 pointer-events-none'
 const defaultStyle = 'bg-black white b--none'
@@ -28,6 +29,7 @@ export default class Button extends React.Component {
 
   render() {
     const { children, disabled, transparent, onClick, className, style, type } = this.props
+
     const classes = classNames(
       'flex justify-center items-center pointer ph3 pv1 br1 outline-transparent',
       {
@@ -38,8 +40,17 @@ export default class Button extends React.Component {
       }
     )
 
+    const props = omit(this.props, Object.keys(Button.propTypes))
+
     return (
-      <button disabled={disabled} className={classes} style={style} onClick={onClick} type={type}>
+      <button
+        {...props}
+        disabled={disabled}
+        className={classes}
+        style={style}
+        onClick={onClick}
+        type={type}
+      >
         {children}
       </button>
     )
