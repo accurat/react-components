@@ -1,6 +1,7 @@
 import React from 'react'
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
+import { omit } from 'lodash'
 
 const disabledStyle = 'o-30 pointer-events-none'
 const inactiveStyle = 'o-50'
@@ -40,6 +41,8 @@ export default class Radio extends React.Component {
       [inputClassName]: inputClassName,
     })
 
+    const props = omit(this.props, Object.keys(Radio.propTypes))
+
     return (
       <div className={classes} style={style} onClick={this.handleClick}>
         <div
@@ -49,6 +52,7 @@ export default class Radio extends React.Component {
             height: 18,
           }}>
           <input
+            {...props}
             className={`${inputClasses} input-reset ba br-100 bw1 outline-transparent pointer`}
             type="radio"
             checked={checked}

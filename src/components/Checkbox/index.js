@@ -1,6 +1,7 @@
 import React from 'react'
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
+import { omit } from 'lodash'
 
 const disabledStyle = 'o-30 pointer-events-none'
 const inactiveStyle = 'o-50'
@@ -71,6 +72,8 @@ export default class Checkbox extends React.Component {
       }
     )
 
+    const props = omit(this.props, Object.keys(Checkbox.propTypes))
+
     return (
       <div style={style} className={classes} onClick={this.handleChange}>
         <div
@@ -80,6 +83,7 @@ export default class Checkbox extends React.Component {
             height: 18,
           }}>
           <input
+            {...props}
             className={inputClasses}
             type="checkbox"
             checked={checked}

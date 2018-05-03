@@ -2,6 +2,7 @@ import React from 'react'
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
 import { Scrollbars } from 'react-custom-scrollbars'
+import { omit } from 'lodash'
 
 const disabledStyle = 'o-50 pointer-events-none'
 
@@ -96,8 +97,11 @@ export default class Select extends React.Component {
       [childrenClassName]: childrenClassName,
     })
 
+    const props = omit(this.props, Object.keys(Select.propTypes))
+
     return (
       <div
+        {...props}
         ref={el => { this.container = el }}
         className="relative"
       >
