@@ -125,7 +125,6 @@ export default class Select extends React.Component {
                 ))}
               </Scrollbars>
             ) : (
-              open &&
               children.map((child, i) => (
                 <div key={i} onClick={autoclose ? this.setClose : null}>
                   {child}
