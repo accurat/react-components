@@ -8,11 +8,11 @@ const changeSelected = (item) => (value) => {
 <FlexView column vAlign="around" className="h5">
     <p>Selected: {state.selected}</p>
 
-    <Radio onClick={changeSelected(1)} checked={state.selected === 1}>
+    <Radio onChange={changeSelected(1)} checked={state.selected === 1}>
       Click me
     </Radio>
 
-    <Radio onClick={changeSelected(2)} checked={state.selected === 2} className="blue" inputClassName="bg-blue b--blue">
+    <Radio onChange={changeSelected(2)} checked={state.selected === 2} className="blue" inputClassName="bg-blue b--blue">
       Colorful Radio
     </Radio>
 
