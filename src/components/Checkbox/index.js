@@ -5,13 +5,15 @@ import { omit } from 'lodash'
 
 const disabledStyle = 'o-30 pointer-events-none'
 const inactiveStyle = 'o-50'
+const defaultInputStyle = 'bw1 b--black'
 
 const CheckSvg = ({ className, style }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 21.25 18.58"
     className={className}
-    style={style}>
+    style={style}
+  >
     <polygon
       points="7.35 18.58 0 11.23 2.83 8.4 7.15 12.72 18.24 0 21.25 2.63 7.35 18.58"
       fill="inherit"
@@ -29,69 +31,69 @@ export default class Checkbox extends React.Component {
     disabled: PropTypes.bool,
     checked: PropTypes.bool,
     onChange: PropTypes.func,
+    reset: PropTypes.bool,
   }
 
   static defaultProps = {
     className: '',
     inputClassName: '',
     style: {},
+    light: false,
+    checked: false,
     onChange: () => {},
+    reset: false,
   }
 
-  state = {
-    checked: this.props.checked,
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.checked !== this.state.checked) {
-      this.setState({ checked: nextProps.checked })
-    }
-  }
-
-  handleChange = () => {
-    const value = !this.state.checked
-    this.setState({ checked: value })
-    this.props.onChange(value)
+  handleChange = event => {
+    this.props.onChange(event.currentTarget.checked)
   }
 
   render() {
-    const { children, className, inputClassName, style, light, disabled } = this.props
-    const { checked } = this.state
+    const {
+      children,
+      className,
+      inputClassName,
+      style,
+      light,
+      checked,
+      disabled,
+      reset,
+    } = this.props
 
-    const classes = classNames('flex flex-row justify-start items-center w-fit pointer', {
+    const classes = classNames(className, 'flex items-center w-fit pointer', {
       [disabledStyle]: disabled,
-      [inactiveStyle]: !checked,
-      [className]: className,
+      [inactiveStyle]: !checked && !reset,
     })
 
     const inputClasses = classNames(
-      'absolute absolute--fill center input-reset ba bw1 b--black pointer',
+      inputClassName,
+      'absolute absolute--fill center input-reset outline-0 pointer ba',
       {
-        'bg-black': checked,
-        [inputClassName]: inputClassName,
-      }
+        'bg-black': checked && !light && !reset,
+        [defaultInputStyle]: !reset,
+      },
     )
 
     const props = omit(this.props, Object.keys(Checkbox.propTypes))
 
     return (
-      <div style={style} className={classes} onClick={this.handleChange}>
+      <label style={style} className={classes}>
         <div
           className="relative"
           style={{
             width: 18,
             height: 18,
-          }}>
+          }}
+        >
           <input
             {...props}
             className={inputClasses}
             type="checkbox"
             checked={checked}
-            readOnly
+            onChange={this.handleChange}
             style={{
               width: 18,
               height: 18,
-              backgroundColor: checked || 'transparent',
             }}
           />
           {checked && (
@@ -101,8 +103,8 @@ export default class Checkbox extends React.Component {
             />
           )}
         </div>
-        {children && <label className="ml2 pointer">{children}</label>}
-      </div>
+        {children && <div className="ml2 pointer">{children}</div>}
+      </label>
     )
   }
 }
