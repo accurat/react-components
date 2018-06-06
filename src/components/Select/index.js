@@ -93,7 +93,8 @@ export default class Select extends React.Component {
       [darkStyle]: dark && !reset,
     })
 
-    const childrenClasses = classNames(childrenClassName, 'absolute z-5 w-100', {
+    const childrenClasses = classNames(childrenClassName, 'absolute z-5', {
+      'w-100': scrollable,
       h5: open && scrollable,
       [defaultChildrenStyle]: !reset,
     })
