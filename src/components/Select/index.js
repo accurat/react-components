@@ -5,6 +5,9 @@ import { Scrollbars } from 'react-custom-scrollbars'
 import { omit } from 'lodash'
 
 const disabledStyle = 'o-50 pointer-events-none'
+const defaultStyle = 'b--black bg-white br1'
+const darkStyle = 'b--black bg-black white br1'
+const defaultChildrenStyle = 'shadow-4 bg-white'
 
 const DropdownSvg = ({ style }) => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 4" style={style}>
@@ -25,6 +28,7 @@ export default class Select extends React.Component {
     disabled: PropTypes.bool,
     autoclose: PropTypes.bool,
     onClick: PropTypes.func,
+    reset: PropTypes.bool,
   }
 
   static defaultProps = {
@@ -33,6 +37,7 @@ export default class Select extends React.Component {
     style: {},
     autoclose: true,
     onClick: () => {},
+    reset: false,
   }
 
   state = {
@@ -55,17 +60,11 @@ export default class Select extends React.Component {
 
   setClose = () => this.setState({ open: false })
 
-  handleClick = event => {
-    const { open } = this.state
-    const { autoclose } = this.props
+  toggleOpen = () => this.setState({ open: !this.state.open })
 
-    if (!open) {
-      this.setOpen()
-    } else if (autoclose) {
-      this.setClose()
-    } else {
-      this.props.onClick(event)
-    }
+  handleClick = event => {
+    this.toggleOpen()
+    this.props.onClick(event)
   }
 
   handleOutsideClick = event => {
@@ -82,19 +81,22 @@ export default class Select extends React.Component {
       label,
       scrollable,
       dark,
+      autoclose,
       disabled,
+      reset,
     } = this.props
     const { open } = this.state
 
-    const classes = classNames('flex justify-between items-center pa2 ba b--black br1 pointer', {
+    const classes = classNames(className, 'flex justify-between items-center pointer pa2 ba', {
       [disabledStyle]: disabled,
-      [className]: className,
+      [defaultStyle]: !dark && !reset,
+      [darkStyle]: dark && !reset,
     })
 
-    const childrenClasses = classNames('absolute z-5 shadow-4 w-100 bg-white', {
+    const childrenClasses = classNames(childrenClassName, 'absolute z-5', {
+      'w-100': scrollable,
       h5: open && scrollable,
-      h0: !open,
-      [childrenClassName]: childrenClassName,
+      [defaultChildrenStyle]: !reset,
     })
 
     const props = omit(this.props, Object.keys(Select.propTypes))
@@ -102,35 +104,36 @@ export default class Select extends React.Component {
     return (
       <div
         {...props}
-        ref={el => { this.container = el }}
+        ref={el => {
+          this.container = el
+        }}
         className="relative"
       >
-
         <div onClick={this.handleClick} className={classes} style={style}>
           <span>{label}</span>
           <div className={`ml3 ${open ? 'rotate-180' : ''}`}>
             <DropdownSvg style={{ width: 10, height: 10, fill: dark ? 'white' : 'black' }} />
           </div>
         </div>
-
-        <div className={childrenClasses}>
-          {scrollable ? (
-            <Scrollbars className="h-100">
-              {children.map((child, i) => (
-                <div key={i} onClick={this.handleClick}>
+        {open && (
+          <div className={childrenClasses}>
+            {scrollable ? (
+              <Scrollbars className="h-100">
+                {children.map((child, i) => (
+                  <div key={i} onClick={autoclose ? this.setClose : null}>
+                    {child}
+                  </div>
+                ))}
+              </Scrollbars>
+            ) : (
+              children.map((child, i) => (
+                <div key={i} onClick={autoclose ? this.setClose : null}>
                   {child}
                 </div>
-              ))}
-            </Scrollbars>
-          ) : (
-            open &&
-            children.map((child, i) => (
-              <div key={i} onClick={this.handleClick}>
-                {child}
-              </div>
-            ))
-          )}
-        </div>
+              ))
+            )}
+          </div>
+        )}
       </div>
     )
   }
