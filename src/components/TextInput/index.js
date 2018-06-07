@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import { omit } from 'lodash'
 
 const disabledStyle = 'o-50 pointer-events-none'
+const defaultStyle = 'b--black black bg-white'
 
 export default class TextInput extends React.Component {
   static propTypes = {
@@ -24,6 +25,7 @@ export default class TextInput extends React.Component {
     disabled: PropTypes.bool,
     onChange: PropTypes.func,
     checkValidity: PropTypes.func,
+    reset: PropTypes.bool,
   }
 
   static defaultProps = {
@@ -32,6 +34,7 @@ export default class TextInput extends React.Component {
     type: 'text',
     onChange: () => {},
     checkValidity: () => {},
+    reset: false,
   }
 
   handleChange = event => {
@@ -41,11 +44,11 @@ export default class TextInput extends React.Component {
   }
 
   render() {
-    const { className, style, type, value, defaultValue, disabled } = this.props
+    const { className, style, type, value, defaultValue, disabled, reset } = this.props
 
-    const classes = classNames('pa2 ba b--black br1 input-reset outline-transparent', {
+    const classes = classNames(className, 'pa2 ba input-reset outline-transparent', {
       [disabledStyle]: disabled,
-      [className]: className,
+      [defaultStyle]: !reset,
     })
 
     const props = omit(this.props, Object.keys(TextInput.propTypes))
@@ -54,6 +57,8 @@ export default class TextInput extends React.Component {
       <input
         {...props}
         className={classes}
+        // fontFamily: inherit is an issue with normalize.css,
+        // it sets `font-family: sans-serif;` to every input/button
         style={{ ...style, font: 'inherit' }}
         type={type}
         value={value}
