@@ -59,8 +59,11 @@ export default class Toggle extends React.Component {
           className={inputClasses}
           style={{
             width: 38,
+            minWidth: 38,
             height: 20,
-          }}>
+            minHeight: 20,
+          }}
+        >
           <div
             className="absolute center-vertical bg-white br-100 top-0 bottom-0"
             style={{

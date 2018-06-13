@@ -82,7 +82,9 @@ export default class Checkbox extends React.Component {
           className="relative"
           style={{
             width: 18,
+            minWidth: 18,
             height: 18,
+            minHeight: 18,
           }}
         >
           <input
