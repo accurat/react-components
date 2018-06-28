@@ -119,14 +119,14 @@ export default class Select extends React.Component {
           <div className={childrenClasses}>
             {scrollable ? (
               <Scrollbars className="h-100">
-                {children.map((child, i) => (
+                {React.Children.map(children, (child, i) => (
                   <div key={i} onClick={autoclose ? this.setClose : null}>
                     {child}
                   </div>
                 ))}
               </Scrollbars>
             ) : (
-              children.map((child, i) => (
+              React.Children.map(children, (child, i) => (
                 <div key={i} onClick={autoclose ? this.setClose : null}>
                   {child}
                 </div>
