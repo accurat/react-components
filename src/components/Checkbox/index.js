@@ -28,6 +28,7 @@ export default class Checkbox extends React.Component {
     inputClassName: PropTypes.string,
     style: PropTypes.object,
     light: PropTypes.bool,
+    customTick: PropTypes.string,
     disabled: PropTypes.bool,
     checked: PropTypes.bool,
     onChange: PropTypes.func,
@@ -42,6 +43,7 @@ export default class Checkbox extends React.Component {
     checked: false,
     onChange: () => {},
     reset: false,
+    customTick: '',
   }
 
   handleChange = event => {
@@ -58,6 +60,7 @@ export default class Checkbox extends React.Component {
       checked,
       disabled,
       reset,
+      customTick,
     } = this.props
 
     const classes = classNames(className, 'flex items-center w-fit pointer', {
@@ -101,7 +104,7 @@ export default class Checkbox extends React.Component {
           {checked && (
             <CheckSvg
               className="absolute absolute--fill center m-auto"
-              style={{ width: 10, height: 10, fill: light ? 'black' : 'white' }}
+              style={{ width: 10, height: 10, fill: customTick !== '' ? customTick : light ? 'black' : 'white' }}
             />
           )}
         </div>
