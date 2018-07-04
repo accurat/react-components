@@ -2,7 +2,8 @@
 initialState = {
   first: false,
   second: true,
-  third: true
+  third: true,
+  fourth: true,
 }
 
 const changeSelected = (item) => (value) => {
@@ -24,6 +25,10 @@ const changeSelected = (item) => (value) => {
 
   <Checkbox disabled>
     Disabled Checkbox
+  </Checkbox>
+  
+  <Checkbox onChange={changeSelected('fourth')} checked={state.fourth} customTick="orange">
+    Custom Tick Color
   </Checkbox>
 </FlexView>
 ```
