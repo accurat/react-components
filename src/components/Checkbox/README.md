@@ -2,7 +2,8 @@
 initialState = {
   first: false,
   second: true,
-  third: true
+  third: true,
+  fourth: true,
 }
 
 const changeSelected = (item) => (value) => {
@@ -20,6 +21,10 @@ const changeSelected = (item) => (value) => {
 
   <Checkbox onChange={changeSelected('third')} checked={state.third} light className="black" inputClassName="bg-white b--black">
     Light Checkbox
+  </Checkbox>
+
+  <Checkbox onChange={changeSelected('fourth')} checked={state.fourth} className="black" inputClassName="bg-blue b--black" reset>
+    Resetted Style Checkbox (remove border style)
   </Checkbox>
 
   <Checkbox disabled>
