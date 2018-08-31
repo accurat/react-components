@@ -100,7 +100,7 @@ export default class Checkbox extends React.Component {
           />
           {checked && (
             <CheckSvg
-              className="absolute absolute--fill center m-auto"
+              className="absolute absolute--fill center m-auto pointer-events-none"
               style={{ width: 10, height: 10, fill: light ? 'black' : 'white' }}
             />
           )}
