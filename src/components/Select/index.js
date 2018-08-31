@@ -94,6 +94,7 @@ export default class Select extends React.Component {
     })
 
     const childrenClasses = classNames(childrenClassName, 'absolute z-5', {
+      dn: !open,
       'w-100': scrollable,
       h5: open && scrollable,
       [defaultChildrenStyle]: !reset,
@@ -115,25 +116,23 @@ export default class Select extends React.Component {
             <DropdownSvg style={{ width: 10, height: 10, fill: dark ? 'white' : 'black' }} />
           </div>
         </div>
-        {open && (
-          <div className={childrenClasses}>
-            {scrollable ? (
-              <Scrollbars className="h-100">
-                {React.Children.map(children, (child, i) => (
-                  <div key={i} onClick={autoclose ? this.setClose : null}>
-                    {child}
-                  </div>
-                ))}
-              </Scrollbars>
-            ) : (
-              React.Children.map(children, (child, i) => (
+        <div className={childrenClasses}>
+          {scrollable ? (
+            <Scrollbars className="h-100">
+              {React.Children.map(children, (child, i) => (
                 <div key={i} onClick={autoclose ? this.setClose : null}>
                   {child}
                 </div>
-              ))
-            )}
-          </div>
-        )}
+              ))}
+            </Scrollbars>
+          ) : (
+            React.Children.map(children, (child, i) => (
+              <div key={i} onClick={autoclose ? this.setClose : null}>
+                {child}
+              </div>
+            ))
+          )}
+        </div>
       </div>
     )
   }
