@@ -23,11 +23,13 @@ const CheckSvg = ({ className, style }) => (
 
 export default class Checkbox extends React.Component {
   static propTypes = {
-    children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
+    children: PropTypes.oneOfType([
+      PropTypes.arrayOf(PropTypes.node),
+      PropTypes.node,
+    ]),
     className: PropTypes.string,
     inputClassName: PropTypes.string,
     style: PropTypes.object,
-    light: PropTypes.bool,
     disabled: PropTypes.bool,
     checked: PropTypes.bool,
     onChange: PropTypes.func,
@@ -38,7 +40,6 @@ export default class Checkbox extends React.Component {
     className: '',
     inputClassName: '',
     style: {},
-    light: false,
     checked: false,
     onChange: () => {},
     reset: false,
@@ -54,7 +55,6 @@ export default class Checkbox extends React.Component {
       className,
       inputClassName,
       style,
-      light,
       checked,
       disabled,
       reset,
@@ -67,11 +67,10 @@ export default class Checkbox extends React.Component {
 
     const inputClasses = classNames(
       inputClassName,
-      'absolute absolute--fill center input-reset outline-0 pointer ba',
+      'absolute absolute--fill center input-reset outline-0 pointer',
       {
-        'bg-black': checked && !light && !reset,
         [defaultInputStyle]: !reset,
-      },
+      }
     )
 
     const props = omit(this.props, Object.keys(Checkbox.propTypes))
@@ -89,7 +88,7 @@ export default class Checkbox extends React.Component {
         >
           <input
             {...props}
-            className={inputClasses}
+            className={`ba ${inputClasses}`}
             type="checkbox"
             checked={checked}
             onChange={this.handleChange}
@@ -100,8 +99,8 @@ export default class Checkbox extends React.Component {
           />
           {checked && (
             <CheckSvg
-              className="absolute absolute--fill center m-auto pointer-events-none"
-              style={{ width: 10, height: 10, fill: light ? 'black' : 'white' }}
+              className={`absolute absolute--fill center m-auto pointer-events-none ${inputClasses}`}
+              style={{ width: 10, height: 10, fill: 'currentColor' }}
             />
           )}
         </div>

@@ -5,7 +5,7 @@ module.exports = {
   template: 'src/index.html',
   showCode: true,
   editorConfig: {
-    theme: 'oceanic-next',
+    theme: 'dracula',
   },
   theme: {
     color: {},
@@ -15,5 +15,9 @@ module.exports = {
     },
   },
   styleguideDir: 'docs',
-  require: ['tachyons', 'tachyons-extra', path.join(__dirname, 'src/style.css')],
+  require: [
+    'tachyons',
+    'tachyons-extra',
+    path.join(__dirname, 'src/style.css'),
+  ],
 }

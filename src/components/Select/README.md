@@ -21,7 +21,7 @@ const setSelected = (selected) => () => {
     </a>
   </Select>
 
-  <Select className="w4" childrenClassName="bg-black" label={state.selected} dark>
+  <Select className="w4 bg-black white" childrenClassName="bg-black" label={state.selected}>
     <div className="white bg-blue pa3 pointer" onClick={setSelected('(·_·)')}>(·_·)</div>
     <div className="white bg-purple pa3 pointer" onClick={setSelected('(^Д^)')}>(^Д^)</div>
     <div className="white bg-orange pa3 pointer" onClick={setSelected('(≥o≤)')}>(≥o≤)</div>
