@@ -23,25 +23,12 @@ export default class Toggle extends React.Component {
     onChange: () => {},
   }
 
-  state = {
-    checked: this.props.checked,
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.checked !== this.state.checked) {
-      this.setState({ checked: nextProps.checked })
-    }
-  }
-
-  handleChange = () => {
-    const value = !this.state.checked
-    this.setState({ checked: value })
-    this.props.onChange(value)
+  handleChange = event => {
+    this.props.onChange(event.currentTarget.checked)
   }
 
   render() {
-    const { children, className, inputClassName, style, disabled } = this.props
-    const { checked } = this.state
+    const { children, className, inputClassName, style, checked, disabled } = this.props
 
     const classes = classNames('flex flex-row justify-start items-center w-fit pointer', {
       [disabledStyle]: disabled,
@@ -54,7 +41,7 @@ export default class Toggle extends React.Component {
     })
 
     return (
-      <div style={style} className={classes} onClick={this.handleChange}>
+      <label style={style} className={classes}>
         <div
           className={inputClasses}
           style={{
@@ -64,8 +51,18 @@ export default class Toggle extends React.Component {
             minHeight: 20,
           }}
         >
+          <input
+            className="absolute top-0 left-0 o-0 pointer"
+            type="checkbox"
+            checked={checked}
+            onChange={this.handleChange}
+            style={{
+              width: 38,
+              height: 20,
+            }}
+          />
           <div
-            className="absolute center-vertical bg-white br-100 top-0 bottom-0"
+            className="absolute center-vertical bg-white br-100 top-0 bottom-0 pointer-events-none"
             style={{
               width: 16,
               height: 16,
@@ -74,8 +71,8 @@ export default class Toggle extends React.Component {
             }}
           />
         </div>
-        {children && <label className="ml2 pointer">{children}</label>}
-      </div>
+        {children && <div className="ml2 pointer">{children}</div>}
+      </label>
     )
   }
 }
