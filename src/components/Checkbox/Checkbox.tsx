@@ -1,13 +1,18 @@
-import React from 'react'
+import * as React from 'react'
 import classNames from 'classnames'
-import PropTypes from 'prop-types'
-import { omit } from 'lodash'
+import { InputPropsTypes, InputDefaultProps } from '../../commons/interfaces'
+const { omit } = require('lodash')
 
 const disabledStyle = 'o-30 pointer-events-none'
 const inactiveStyle = 'o-50'
 const defaultInputStyle = 'bw1 b--black'
 
-const CheckSvg = ({ className, style }) => (
+interface SvgParams {
+  className: string
+  style: object
+}
+
+const CheckSvg = ({ className, style }: SvgParams): JSX.Element => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 21.25 18.58"
@@ -21,44 +26,15 @@ const CheckSvg = ({ className, style }) => (
   </svg>
 )
 
-export default class Checkbox extends React.Component {
-  static propTypes = {
-    children: PropTypes.oneOfType([
-      PropTypes.arrayOf(PropTypes.node),
-      PropTypes.node,
-    ]),
-    className: PropTypes.string,
-    inputClassName: PropTypes.string,
-    style: PropTypes.object,
-    disabled: PropTypes.bool,
-    checked: PropTypes.bool,
-    onChange: PropTypes.func,
-    reset: PropTypes.bool,
+export default class Checkbox extends React.Component<InputPropsTypes> {
+  public static defaultProps = InputDefaultProps
+
+  private handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    this.props.onChange(event)
   }
 
-  static defaultProps = {
-    className: '',
-    inputClassName: '',
-    style: {},
-    checked: false,
-    onChange: () => {},
-    reset: false,
-  }
-
-  handleChange = event => {
-    this.props.onChange(event.currentTarget.checked)
-  }
-
-  render() {
-    const {
-      children,
-      className,
-      inputClassName,
-      style,
-      checked,
-      disabled,
-      reset,
-    } = this.props
+  public render() {
+    const { children, className, inputClassName, style, checked, disabled, reset } = this.props
 
     const classes = classNames(className, 'flex items-center w-fit pointer', {
       [disabledStyle]: disabled,
@@ -70,15 +46,15 @@ export default class Checkbox extends React.Component {
       'absolute absolute--fill center input-reset outline-0 pointer',
       {
         [defaultInputStyle]: !reset,
-      }
+      },
     )
 
-    const props = omit(this.props, Object.keys(Checkbox.propTypes))
+    const props = omit(this.props, Object.keys(Checkbox.defaultProps))
 
     return (
       <label style={style} className={classes}>
         <div
-          className="relative"
+          className="realtive"
           style={{
             width: 18,
             minWidth: 18,
@@ -104,7 +80,7 @@ export default class Checkbox extends React.Component {
             />
           )}
         </div>
-        {children && <div className="ml2 pointer">{children}</div>}
+        {children && <div className="ml2">{children}</div>}
       </label>
     )
   }

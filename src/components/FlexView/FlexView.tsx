@@ -33,7 +33,7 @@ export default class FlexView extends React.Component<FlexViewProps> {
       if (typeof shrink === 'number') {
         return shrink
       } else {
-        return Number(shrink) // casts boolean -> number
+        return shrink ? 1 : 0 // casts boolean -> number
       }
     } else {
       // no shrink is passed

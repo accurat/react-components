@@ -1,34 +1,17 @@
-import React from 'react'
+import * as React from 'react'
 import classNames from 'classnames'
-import PropTypes from 'prop-types'
-import { omit } from 'lodash'
+import { InputPropsTypes, InputDefaultProps } from '../../commons/interfaces'
+
+const { omit } = require('lodash')
 
 const disabledStyle = 'o-30 pointer-events-none'
 const inactiveStyle = 'o-50'
 const defaultInputStyle = 'bw1 b--black bg-black outline-transparent'
 
-export default class Radio extends React.Component {
-  static propTypes = {
-    children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
-    className: PropTypes.string,
-    inputClassName: PropTypes.string,
-    style: PropTypes.object,
-    disabled: PropTypes.bool,
-    checked: PropTypes.bool,
-    onChange: PropTypes.func,
-    reset: PropTypes.bool,
-  }
+export default class Radio extends React.Component<InputPropsTypes> {
+  static defaultProps = InputDefaultProps
 
-  static defaultProps = {
-    className: '',
-    inputClassName: '',
-    style: {},
-    checked: false,
-    onChange: () => {},
-    reset: false,
-  }
-
-  handleChange = event => {
+  private handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     this.props.onChange(event.currentTarget.checked)
   }
 
@@ -44,7 +27,7 @@ export default class Radio extends React.Component {
       [defaultInputStyle]: !reset,
     })
 
-    const props = omit(this.props, Object.keys(Radio.propTypes))
+    const props = omit(this.props, Object.keys(Radio.defaultProps))
 
     return (
       <label className={classes} style={style}>
