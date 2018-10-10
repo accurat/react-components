@@ -13,3 +13,6 @@ lib/
 
 # npm and yarn log
 *.log
+
+.prettierignore
+.prettierrc

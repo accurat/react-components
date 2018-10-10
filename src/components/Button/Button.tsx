@@ -1,25 +1,23 @@
-import React from 'react'
+import * as React from 'react'
 import classNames from 'classnames'
-import PropTypes from 'prop-types'
-import { omit } from 'lodash'
-
+const omit = require('lodash')
 const disabledStyle = 'o-50 pointer-events-none'
 const defaultStyle = 'ph3 pv1 br1 bg-black white b--none'
 const transparentStyle = 'ph3 pv1 br1 bg-transparent black ba bw1 b--black'
 
-export default class Button extends React.Component {
-  static propTypes = {
-    children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
-    disabled: PropTypes.bool,
-    transparent: PropTypes.bool,
-    reset: PropTypes.bool,
-    onClick: PropTypes.func,
-    className: PropTypes.string,
-    style: PropTypes.object,
-    type: PropTypes.string,
-  }
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  children?: React.ReactNode // Array<JSX.Element> | JSX.Element
+  disabled?: boolean
+  transparent?: boolean
+  reset?: boolean
+  onClick?: () => void
+  className?: string
+  style?: object
+  type?: string
+}
 
-  static defaultProps = {
+export default class Button extends React.Component<ButtonProps> {
+  public static defaultProps: Partial<ButtonProps> = {
     disabled: false,
     transparent: false,
     reset: false,
@@ -29,7 +27,7 @@ export default class Button extends React.Component {
     type: 'button',
   }
 
-  render() {
+  public render() {
     const { children, disabled, transparent, reset, onClick, className, style, type } = this.props
 
     const classes = classNames(
@@ -42,7 +40,7 @@ export default class Button extends React.Component {
       },
     )
 
-    const props = omit(this.props, Object.keys(Button.propTypes))
+    const props = omit(this.props, Object.keys(Button.defaultProps))
 
     return (
       <button
