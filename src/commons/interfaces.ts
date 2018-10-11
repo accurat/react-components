@@ -5,7 +5,7 @@ export interface InputPropsTypes {
   style?: object
   disabled?: boolean
   checked?: boolean
-  onChange?: (event: React.ChangeEvent<HTMLInputElement> | boolean) => void // This has to be fixed
+  onChange?: (event: boolean) => void // This has to be fixed
   reset?: boolean
 }
 
@@ -13,6 +13,7 @@ export const InputDefaultProps: object = {
   className: '',
   inputClassName: '',
   style: {},
+  disabled: false,
   checked: false,
   onChange: () => {},
   reset: false,

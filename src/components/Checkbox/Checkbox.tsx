@@ -30,7 +30,8 @@ export default class Checkbox extends React.Component<InputPropsTypes> {
   public static defaultProps = InputDefaultProps
 
   private handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    this.props.onChange(event)
+    // this.props.onChange(event) why do we give an event and not boolean?
+    this.props.onChange(event.currentTarget.checked)
   }
 
   public render() {
