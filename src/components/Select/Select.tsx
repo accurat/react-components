@@ -13,18 +13,18 @@ interface DropDownParams {
 }
 
 interface SelectProps {
-  children: React.ReactNode
-  className: string
-  childrenClassName: string
-  style: object
-  label: string
-  scrollable: boolean
-  dark: boolean
-  open: boolean
-  disabled: boolean
-  autoclose: boolean
-  onClick: (e: React.ChangeEvent<HTMLInputElement>) => void
-  reset: boolean
+  children?: React.ReactNode
+  className?: string
+  childrenClassName?: string
+  style?: object
+  label?: string
+  scrollable?: boolean
+  dark?: boolean
+  open?: boolean
+  disabled?: boolean
+  autoclose?: boolean
+  onClick?: (e: React.ChangeEvent<HTMLInputElement>) => void
+  reset?: boolean
 }
 
 const DropdownSvg = ({ style }: DropDownParams): JSX.Element => (
