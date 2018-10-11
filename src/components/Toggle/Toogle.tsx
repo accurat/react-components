@@ -1,33 +1,19 @@
-import React from 'react'
+import * as React from 'react'
 import classNames from 'classnames'
-import PropTypes from 'prop-types'
+import { InputPropsTypes, InputDefaultProps } from '../../commons/interfaces'
 
 const disabledStyle = 'o-30 pointer-events-none'
 const inactiveStyle = 'o-50'
 
-export default class Toggle extends React.Component {
-  static propTypes = {
-    children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
-    className: PropTypes.string,
-    inputClassName: PropTypes.string,
-    style: PropTypes.object,
-    disabled: PropTypes.bool,
-    checked: PropTypes.bool,
-    onChange: PropTypes.func,
-  }
+export default class Toogle extends React.Component<InputPropsTypes> {
+  static defaultProps = InputDefaultProps
 
-  static defaultProps = {
-    className: '',
-    inputClassName: '',
-    style: {},
-    onChange: () => {},
-  }
-
-  handleChange = event => {
+  private handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    // this.props.onChange(event) why do we give an event and not boolean?
     this.props.onChange(event.currentTarget.checked)
   }
 
-  render() {
+  public render() {
     const { children, className, inputClassName, style, checked, disabled } = this.props
 
     const classes = classNames('flex flex-row justify-start items-center w-fit pointer', {
@@ -39,7 +25,7 @@ export default class Toggle extends React.Component {
     const inputClasses = classNames('relative br4 bg-black', {
       [inputClassName]: inputClassName,
     })
-
+    
     return (
       <label style={style} className={classes}>
         <div
