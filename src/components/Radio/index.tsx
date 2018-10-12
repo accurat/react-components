@@ -14,7 +14,7 @@ export default function Radio({
   style = {},
   disabled = false,
   checked = false,
-  onChange = () => {},
+  onChange = event => {},
   reset = false,
   ...props
 }: InputPropsTypes): JSX.Element {

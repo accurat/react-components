@@ -37,7 +37,7 @@ export default function Checkbox({
   style = {},
   disabled = false,
   checked = false,
-  onChange = () => {},
+  onChange = event => {},
   reset = false,
   ...props
 }: CheckBoxArguments): JSX.Element {
