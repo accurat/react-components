@@ -14,20 +14,27 @@ interface FlexViewProps {
   style?: object
 }
 
-export default class FlexView extends React.Component<FlexViewProps> {
-  public static defaultProps = { className: '', style: {} }
-
-  private getGrow = (): number => {
-    const { grow } = this.props
+export default function FlexView({
+  children,
+  column,
+  vAlign,
+  hAlign,
+  grow,
+  shrink,
+  basis,
+  wrap,
+  className = '',
+  style = {},
+  ...props
+}: FlexViewProps): JSX.Element {
+  function getGrow(): number {
     if (grow === undefined) {
       return 0
     }
     return typeof grow === 'number' ? grow : 1 // default is 0
   }
 
-  private getShrink = (): number => {
-    const { shrink, basis } = this.props
-
+  function getShrink(): number {
     if (shrink !== undefined) {
       // shrink is passed
       if (typeof shrink === 'number') {
@@ -41,8 +48,7 @@ export default class FlexView extends React.Component<FlexViewProps> {
     } // default is 1
   }
 
-  private getBasis = (): string => {
-    const { basis } = this.props
+  function getBasis(): string {
     if (basis) {
       const suffix = typeof basis === 'number' || String(parseInt(basis, 10)) ? 'px' : ''
       return basis + suffix
@@ -51,10 +57,10 @@ export default class FlexView extends React.Component<FlexViewProps> {
     }
   }
 
-  private getFlexStyle = (): object => {
-    const grow = this.getGrow()
-    const shrink = this.getShrink()
-    const basis = this.getBasis()
+  function getFlexStyle(): object {
+    const grow = getGrow()
+    const shrink = getShrink()
+    const basis = getBasis()
     const values = `${grow} ${shrink} ${basis}`
 
     return {
@@ -66,11 +72,12 @@ export default class FlexView extends React.Component<FlexViewProps> {
     }
   }
 
-  private getStyle = (): object => {
-    return { ...this.getFlexStyle(), ...this.props.style }
+  function getStyle(): object {
+    return { ...getFlexStyle(), ...style }
   }
-  private getContentAlignmentClasses(): string {
-    const vAlignClasses = this.props.column
+
+  function getContentAlignmentClasses(): string {
+    const vAlignClasses = column
       ? {
           top: 'justify-start',
           center: 'justify-center',
@@ -86,7 +93,7 @@ export default class FlexView extends React.Component<FlexViewProps> {
           stretch: 'items-stretch',
         }
 
-    const hAlignClasses = this.props.column
+    const hAlignClasses = column
       ? {
           left: 'items-start',
           center: 'items-center',
@@ -102,30 +109,24 @@ export default class FlexView extends React.Component<FlexViewProps> {
           around: 'justify-around',
         }
 
-    const vAlign = this.props.vAlign && vAlignClasses[this.props.vAlign]
-    const hAlign = this.props.hAlign && hAlignClasses[this.props.hAlign]
+    const vAlignClassObject = vAlign && vAlignClasses[vAlign]
+    const hAlignClassObject = hAlign && hAlignClasses[hAlign]
 
-    return classNames(vAlign, hAlign)
+    return classNames(vAlignClassObject, hAlignClassObject)
   }
 
-  private getClasses = (): string => {
-    const direction = this.props.column && 'flex-column'
-    const wrap = this.props.wrap && 'flex-wrap'
+  function getClasses(): string {
+    const direction = column && 'flex-column'
+    const wrapClassName = wrap && 'flex-wrap'
 
-    const contentAlignment = this.getContentAlignmentClasses()
+    const contentAlignment = getContentAlignmentClasses()
 
-    return classNames('flex', direction, contentAlignment, wrap, this.props.className)
+    return classNames('flex', direction, contentAlignment, wrapClassName, className)
   }
-
-  public render() {
-    const className = this.getClasses()
-    const style = this.getStyle()
-
-    // TODO - can you pass other props?
-    return (
-      <div className={className} style={style}>
-        {this.props.children}
-      </div>
-    )
-  }
+  // TODO - can you pass other props?
+  return (
+    <div className={getClasses()} style={getStyle()}>
+      {children}
+    </div>
+  )
 }
