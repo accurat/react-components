@@ -2,7 +2,7 @@ import React from 'react'
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
 import { Scrollbars } from 'react-custom-scrollbars'
-import { omit } from 'lodash'
+import { omit, get } from 'lodash'
 
 const disabledStyle = 'o-50 pointer-events-none'
 const defaultStyle = 'b--black br1'
@@ -16,10 +16,7 @@ const DropdownSvg = ({ style }) => (
 
 export default class Select extends React.Component {
   static propTypes = {
-    children: PropTypes.oneOfType([
-      PropTypes.arrayOf(PropTypes.node),
-      PropTypes.node,
-    ]),
+    children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
     className: PropTypes.string,
     childrenClassName: PropTypes.string,
     style: PropTypes.object,
@@ -31,6 +28,10 @@ export default class Select extends React.Component {
     autoclose: PropTypes.bool,
     onClick: PropTypes.func,
     reset: PropTypes.bool,
+    filterable: PropTypes.bool,
+    filterableValue: PropTypes.string,
+    filterableProp: PropTypes.string,
+    onFilterInput: PropTypes.func,
   }
 
   static defaultProps = {
@@ -44,6 +45,9 @@ export default class Select extends React.Component {
 
   state = {
     open: this.props.open,
+    textInput: this.props.label,
+    textInputClicked: false,
+    textInputFocus: false,
   }
 
   componentDidMount() {
@@ -68,9 +72,26 @@ export default class Select extends React.Component {
 
   toggleOpen = () => this.setState({ open: !this.state.open })
 
+  shouldHideChild = child => {
+    // if (child.ugly) return true
+    const { filterableProp, filterable, onFilterInput } = this.props
+    if (!filterable || onFilterInput !== undefined) return false
+    const { textInput } = this.state
+    const childValue = get(child, `props.${filterableProp}`) || get(child, 'props.filterableValue')
+    if (childValue === undefined) return true
+    return !childValue.toLowerCase().includes(textInput.toLowerCase())
+  }
+
   handleClick = event => {
     this.toggleOpen()
     this.props.onClick(event)
+  }
+
+  handleInput = event => {
+    const { value } = event.target
+    const { onFilterInput } = this.props
+    const callback = () => onFilterInput && onFilterInput(value)
+    this.setState({ textInput: value }, callback)
   }
 
   handleOutsideClick = event => {
@@ -78,37 +99,75 @@ export default class Select extends React.Component {
     this.setClose(event)
   }
 
+  renderChildren = () => {
+    const { children, autoclose } = this.props
+    return React.Children.map(children, (child, i) => {
+      if (this.shouldHideChild(child)) return null
+      return (
+        <div key={i} onClick={autoclose ? this.setClose : null}>
+          {child}
+        </div>
+      )
+    })
+  }
+
+  handleFocus = () => {
+    const newState = this.state.textInputClicked
+      ? { textInputFocus: true }
+      : { textInputFocus: true, textInput: '', textInputClicked: true }
+    this.setState(newState)
+  }
+
+  handleBlur = () => {
+    const { textInput } = this.state
+    const newState =
+      textInput.length === 0
+        ? { textInputClicked: false, textInput: this.props.label, textInputFocus: false }
+        : { textInputFocus: false }
+    this.setState(newState)
+  }
+
   render() {
     const {
-      children,
       className,
       childrenClassName,
       style,
       label,
       scrollable,
-      autoclose,
       disabled,
       reset,
+      filterable,
     } = this.props
-    const { open } = this.state
+    const { open, textInput, textInputFocus } = this.state
 
-    const classes = classNames(
-      className,
-      'flex justify-between items-center pointer pa2 ba',
-      {
-        [disabledStyle]: disabled,
-        [defaultStyle]: !reset,
-      }
-    )
+    const listOpen = textInputFocus || open
+
+    const classes = classNames(className, 'flex justify-between items-center pointer pa2 ba', {
+      [disabledStyle]: disabled,
+      [defaultStyle]: !reset,
+    })
 
     const childrenClasses = classNames(childrenClassName, 'absolute z-5', {
-      dn: !open,
+      dn: !listOpen,
       'w-100': scrollable,
-      h5: open && scrollable,
+      h5: listOpen && scrollable,
       [defaultChildrenStyle]: !reset,
     })
 
     const props = omit(this.props, Object.keys(Select.propTypes))
+
+    const title = filterable ? (
+      <input
+        type="text"
+        className="w-80 bn"
+        value={textInput}
+        onChange={this.handleInput}
+        onFocus={this.handleFocus}
+        onBlur={this.handleBlur}
+      />
+    ) : (
+      <span>{label}</span>
+    )
 
     return (
       <div
@@ -119,28 +178,16 @@ export default class Select extends React.Component {
         className="relative"
       >
         <div onClick={this.handleClick} className={classes} style={style}>
-          <span>{label}</span>
-          <div className={`ml3 ${open ? 'rotate-180' : ''}`}>
-            <DropdownSvg
-              style={{ width: 10, height: 10, fill: 'currentColor' }}
-            />
+          {title}
+          <div className={`ml3 ${listOpen ? 'rotate-180' : ''}`}>
+            <DropdownSvg style={{ width: 10, height: 10, fill: 'currentColor' }} />
           </div>
         </div>
         <div className={childrenClasses}>
           {scrollable ? (
-            <Scrollbars className="h-100">
-              {React.Children.map(children, (child, i) => (
-                <div key={i} onClick={autoclose ? this.setClose : null}>
-                  {child}
-                </div>
-              ))}
-            </Scrollbars>
+            <Scrollbars className="h-100">{this.renderChildren()}</Scrollbars>
           ) : (
-            React.Children.map(children, (child, i) => (
-              <div key={i} onClick={autoclose ? this.setClose : null}>
-                {child}
-              </div>
-            ))
+            this.renderChildren()
           )}
         </div>
       </div>
