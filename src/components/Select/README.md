@@ -49,5 +49,12 @@ const setSelected = (selected) => () => {
     <div className="pa2">4</div>
   </Select>
 
+  <Select className="w4" label="Choose your favorite small number" filterable filterableProp="value">
+    <div value="one" className="pa2">1 - One</div>
+    <div value="two" className="pa2">2 - Two</div>
+    <div value="three" className="pa2">3 - Three</div>
+    <div value="four" className="pa2">4 - Four</div>
+  </Select>
+
 </FlexView>
 ```
