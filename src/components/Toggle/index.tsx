@@ -1,5 +1,5 @@
-import * as React from 'react'
 import classNames from 'classnames'
+import * as React from 'react'
 import { InputPropsTypes } from '../../commons/interfaces'
 
 const disabledStyle = 'o-30 pointer-events-none'
@@ -36,15 +36,15 @@ export default function Toogle({
       <div
         className={inputClasses}
         style={{
-          width: 38,
-          minWidth: 38,
           height: 20,
+          width: 38,
           minHeight: 20,
+          minWidth: 38,
         }}
       >
         <input
-          className="absolute top-0 left-0 o-0 pointer"
-          type="checkbox"
+          className='absolute top-0 left-0 o-0 pointer'
+          type='checkbox'
           checked={checked}
           onChange={handleChange}
           style={{
@@ -53,7 +53,7 @@ export default function Toogle({
           }}
         />
         <div
-          className="absolute center-vertical bg-white br-100 top-0 bottom-0 pointer-events-none"
+          className='absolute center-vertical bg-white br-100 top-0 bottom-0 pointer-events-none'
           style={{
             width: 16,
             height: 16,
@@ -62,7 +62,7 @@ export default function Toogle({
           }}
         />
       </div>
-      {children && <div className="ml2 pointer">{children}</div>}
+      {children && <div className='ml2 pointer'>{children}</div>}
     </label>
   )
 }

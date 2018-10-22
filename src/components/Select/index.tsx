@@ -1,5 +1,5 @@
-import * as React from 'react'
 import classNames from 'classnames'
+import * as React from 'react'
 import { InputDefaultProps } from '../../commons/interfaces'
 const { Scrollbars } = require('react-custom-scrollbars')
 const { omit } = require('lodash')
@@ -28,13 +28,13 @@ export interface SelectProps {
 }
 
 const DropdownSvg = ({ style }: DropDownParams): JSX.Element => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 4" style={style}>
-    <polygon points="0 0 8 0 4 4 0 0" fill="inherit" />
+  <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 4' style={style}>
+    <polygon points='0 0 8 0 4 4 0 0' fill='inherit' />
   </svg>
 )
 
 export default class Select extends React.Component<SelectProps> {
-  componentDidMount() {
+  public componentDidMount() {
     document.body.addEventListener('mouseup', this.handleOutsideClick, {
       passive: true,
     })
@@ -43,14 +43,14 @@ export default class Select extends React.Component<SelectProps> {
     })
   }
 
-  componentWillUnmount() {
+  public componentWillUnmount() {
     document.body.removeEventListener('mouseup', this.handleOutsideClick)
     document.body.removeEventListener('touchend', this.handleOutsideClick)
   }
 
-  static defaultProps = { ...InputDefaultProps, autoclose: true }
-  state = { open: this.props.open }
-  container: HTMLDivElement = null
+  public static defaultProps = { ...InputDefaultProps, autoclose: true }
+  public state = { open: this.props.open }
+  public container: HTMLDivElement = null
 
   private setClose = (): void => this.setState({ open: false })
   private setOpen = (): void => this.setState({ open: true })
@@ -90,9 +90,9 @@ export default class Select extends React.Component<SelectProps> {
     })
 
     const childrenClasses = classNames(childrenClassName, 'absolute z-5', {
-      dn: !open,
+      "dn": !open,
       'w-100': scrollable,
-      h5: open && scrollable,
+      "h5": open && scrollable,
       [defaultChildrenStyle]: !reset,
     })
 
@@ -104,7 +104,7 @@ export default class Select extends React.Component<SelectProps> {
         ref={el => {
           this.container = el
         }}
-        className="relative"
+        className='relative'
       >
         <div onClick={this.handleClick} className={classes} style={style}>
           <span>{label}</span>
@@ -114,7 +114,7 @@ export default class Select extends React.Component<SelectProps> {
         </div>
         <div className={childrenClasses}>
           {scrollable ? (
-            <Scrollbars className="h-100">
+            <Scrollbars className='h-100'>
               {React.Children.map(
                 children,
                 (child: React.ReactChild, i: number): JSX.Element => (

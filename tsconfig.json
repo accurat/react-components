@@ -19,9 +19,5 @@
     "noUnusedLocals": false,
     "experimentalDecorators": true
   },
-  "exclude": [
-    "node_modules",
-    "build",
-    "webpack.config.js"
-  ]
+  "exclude": ["node_modules", "build", "webpack.config.js"]
 }

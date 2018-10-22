@@ -17,4 +17,5 @@ module.exports = {
   styleguideDir: 'docs',
   require: ['tachyons', 'tachyons-extra', path.join(__dirname, 'src/style.css')],
   propsParser: require('react-docgen-typescript').withCustomConfig('./tsconfig.json').parse,
+  webpackConfig: require('react-scripts-ts/config/webpack.config.dev'),
 }

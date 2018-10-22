@@ -51,6 +51,7 @@
     "react": "^16.2.0",
     "react-custom-scrollbars": "^4.2.1",
     "react-dom": "^16.2.0",
+    "react-scripts-ts": "^3.1.0",
     "tachyons": "^4.9.1",
     "tachyons-extra": "^1.0.1",
     "tslint": "^5.11.0",
