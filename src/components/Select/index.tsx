@@ -8,11 +8,11 @@ const disabledStyle = 'o-50 pointer-events-none'
 const defaultStyle = 'b--black br1'
 const defaultChildrenStyle = 'shadow-4 bg-white'
 
-interface DropDownParams {
+export interface DropDownParams {
   style: object
 }
 
-interface SelectProps {
+export interface SelectProps {
   children?: React.ReactNode
   className?: string
   childrenClassName?: string

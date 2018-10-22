@@ -36,13 +36,14 @@
   "devDependencies": {
     "accurapp-scripts": "^3.2.9",
     "eslint-config-accurapp": "^3.0.1",
+    "react-docgen-typescript": "^1.11.0",
     "react-styleguidist": "^6.2.5",
     "webpack-preset-accurapp": "^3.1.10"
   },
   "dependencies": {
     "@types/classnames": "^2.2.6",
     "@types/lodash": "^4.14.117",
-    "@types/react": "^16.4.16",
+    "@types/react": "^16.4.18",
     "@types/react-custom-scrollbars": "^4.0.5",
     "classnames": "^2.2.5",
     "lodash": "^4.17.11",

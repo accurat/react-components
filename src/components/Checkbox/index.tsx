@@ -6,7 +6,7 @@ const disabledStyle = 'o-30 pointer-events-none'
 const inactiveStyle = 'o-50'
 const defaultInputStyle = 'bw1 b--black'
 
-interface SvgParams {
+export interface SvgParams {
   className: string
   style: object
 }
@@ -25,7 +25,7 @@ const CheckSvg = ({ className, style }: SvgParams): JSX.Element => (
   </svg>
 )
 
-interface CheckBoxArguments extends InputPropsTypes {
+export interface CheckBoxArguments extends InputPropsTypes {
   svg: JSX.Element
 }
 

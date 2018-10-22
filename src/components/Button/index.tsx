@@ -5,7 +5,7 @@ const disabledStyle = 'o-50 pointer-events-none'
 const defaultStyle = 'ph3 pv1 br1 bg-black white b--none'
 const transparentStyle = 'ph3 pv1 br1 bg-transparent black ba bw1 b--black'
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children?: React.ReactNode // Array<JSX.Element> | JSX.Element
   disabled?: boolean
   transparent?: boolean

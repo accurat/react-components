@@ -1,7 +1,7 @@
 import * as React from 'react'
 import classNames from 'classnames'
 
-interface FlexViewProps {
+export interface FlexViewProps {
   children?: React.ReactNode
   column?: boolean
   vAlign?: 'top' | 'center' | 'bottom' | 'between' | 'around' | 'baseline' | 'stretch'

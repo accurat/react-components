@@ -6,7 +6,7 @@ const { omit } = require('lodash')
 const disabledStyle = 'o-50 pointer-events-none'
 const defaultStyle = 'b--black black bg-white'
 
-interface TextInputpropsType {
+export interface TextInputpropsType {
   className?: string
   style?: object
   type?: 'text' | 'email' | 'password' | 'number' | 'tel' | 'time' | 'date' | 'datetime-local'
