@@ -3,7 +3,7 @@
 */
 
 body {
-  font-family: "Roboto Mono", monospace;
+  font-family: 'Roboto Mono', monospace;
 }
 
 footer {
@@ -23,7 +23,7 @@ footer {
 }
 
 .rsg--logo-5 {
-  background: url(../assets/logo.png) no-repeat center !important;
+  background: url(./assets/logo.png) no-repeat center !important;
   background-size: contain !important;
   height: 30px !important;
   margin-top: 30px !important;
