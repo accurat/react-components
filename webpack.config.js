@@ -14,7 +14,7 @@ const libConfig = buildWebpackConfig([
   setOutput({
     ...appConfig.output,
     path: path.resolve('./lib'),
-    filename: 'react-components.js',
+    filename: 'react-components.ts',
     libraryTarget: 'commonjs2',
   }),
   setExternals([npmModulesExternals()]),
