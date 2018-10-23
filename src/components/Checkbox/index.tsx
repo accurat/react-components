@@ -60,7 +60,7 @@ export default function Checkbox({
   return (
     <label style={style} className={classes}>
       <div
-        className="realtive"
+        className="relative"
         style={{
           width: 18,
           minWidth: 18,
