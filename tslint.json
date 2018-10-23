@@ -26,7 +26,9 @@
     "interface-name": [true, "never-prefix"],
     "no-require-imports": false,
     "no-var-requires": false,
-    "no-shadowed-variable": false
+    "no-shadowed-variable": false,
+    "ordered-imports": false,
+    "no-console": false
   },
   "rulesDirectory": []
 }

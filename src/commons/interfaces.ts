@@ -1,3 +1,5 @@
+import { noop } from 'lodash'
+
 export interface InputPropsTypes {
   children?: React.ReactNode
   className?: string
@@ -15,6 +17,7 @@ export const InputDefaultProps: object = {
   style: {},
   disabled: false,
   checked: false,
-  onChange: () => {},
+  onClick: noop,
+  onChange: noop,
   reset: false,
 }

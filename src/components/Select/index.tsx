@@ -1,3 +1,5 @@
+// TODO - make import and change filename to Select.ts
+
 import classNames from 'classnames'
 import * as React from 'react'
 import { InputDefaultProps } from '../../commons/interfaces'
@@ -23,13 +25,13 @@ export interface SelectProps {
   open?: boolean
   disabled?: boolean
   autoclose?: boolean
-  onClick?: (e: React.ChangeEvent<HTMLInputElement>) => void
+  onClick?: (e: React.MouseEvent<HTMLDivElement>) => void
   reset?: boolean
 }
 
 const DropdownSvg = ({ style }: DropDownParams): JSX.Element => (
-  <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 4' style={style}>
-    <polygon points='0 0 8 0 4 4 0 0' fill='inherit' />
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 4" style={style}>
+    <polygon points="0 0 8 0 4 4 0 0" fill="inherit" />
   </svg>
 )
 
@@ -56,7 +58,7 @@ export default class Select extends React.Component<SelectProps> {
   private setOpen = (): void => this.setState({ open: true })
   private toogleOpen = (): void => this.setState({ open: !this.state.open })
 
-  private handleClick = () => (event: React.ChangeEvent<HTMLInputElement>) => {
+  private handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
     this.toogleOpen()
     this.props.onClick(event)
   }
@@ -104,7 +106,7 @@ export default class Select extends React.Component<SelectProps> {
         ref={el => {
           this.container = el
         }}
-        className='relative'
+        className="relative"
       >
         <div onClick={this.handleClick} className={classes} style={style}>
           <span>{label}</span>
@@ -114,22 +116,28 @@ export default class Select extends React.Component<SelectProps> {
         </div>
         <div className={childrenClasses}>
           {scrollable ? (
-            <Scrollbars className='h-100'>
+            <Scrollbars className="h-100">
               {React.Children.map(
                 children,
-                (child: React.ReactChild, i: number): JSX.Element => (
-                  <div key={i} onClick={autoclose ? this.setClose : null} />
-                ),
+                (child: React.ReactChild, i: number): JSX.Element => {
+                  return (
+                    <div key={i} onClick={autoclose ? this.setClose : null}>
+                      {child}
+                    </div>
+                  )
+                },
               )}
             </Scrollbars>
           ) : (
             React.Children.map(
               children,
-              (child: React.ReactChild, i: number): JSX.Element => (
-                <div key={i} onClick={autoclose ? this.setClose : null}>
-                  {child}
-                </div>
-              ),
+              (child: React.ReactChild, i: number): JSX.Element => {
+                return (
+                  <div key={i} onClick={autoclose ? this.setClose : null}>
+                    {child}
+                  </div>
+                )
+              },
             )
           )}
         </div>
