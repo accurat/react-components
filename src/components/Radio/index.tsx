@@ -1,7 +1,6 @@
 import classNames from 'classnames'
-import { omit } from 'lodash'
 import * as React from 'react'
-import { InputDefaultProps, InputPropsTypes } from '../../commons/interfaces'
+import { InputPropsTypes } from '../../commons/interfaces'
 
 const disabledStyle = 'o-30 pointer-events-none'
 const inactiveStyle = 'o-50'
@@ -34,7 +33,7 @@ export default function Radio({
   return (
     <label className={classes} style={style}>
       <div
-        className='relative'
+        className="relative"
         style={{
           width: 18,
           minWidth: 18,
@@ -45,7 +44,7 @@ export default function Radio({
         <input
           {...props}
           className={`${inputClasses} input-reset br-100 pointer`}
-          type='radio'
+          type="radio"
           checked={checked}
           onChange={handleChange}
           style={{
@@ -66,7 +65,7 @@ export default function Radio({
           />
         )}
       </div>
-      {children && <div className='ml2 pointer'>{children}</div>}
+      {children && <div className="ml2 pointer">{children}</div>}
     </label>
   )
 }

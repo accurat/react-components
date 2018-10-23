@@ -14,10 +14,8 @@ export default function Toogle({
   checked = false,
   onChange = event => {},
   reset = false,
-  ...props
 }: InputPropsTypes): JSX.Element {
   function handleChange(event: React.ChangeEvent<HTMLInputElement>): void {
-    // this.props.onChange(event) why do we give an event and not boolean?
     onChange(event.currentTarget.checked)
   }
 
@@ -43,8 +41,8 @@ export default function Toogle({
         }}
       >
         <input
-          className='absolute top-0 left-0 o-0 pointer'
-          type='checkbox'
+          className="absolute top-0 left-0 o-0 pointer"
+          type="checkbox"
           checked={checked}
           onChange={handleChange}
           style={{
@@ -53,7 +51,7 @@ export default function Toogle({
           }}
         />
         <div
-          className='absolute center-vertical bg-white br-100 top-0 bottom-0 pointer-events-none'
+          className="absolute center-vertical bg-white br-100 top-0 bottom-0 pointer-events-none"
           style={{
             width: 16,
             height: 16,
@@ -62,7 +60,7 @@ export default function Toogle({
           }}
         />
       </div>
-      {children && <div className='ml2 pointer'>{children}</div>}
+      {children && <div className="ml2 pointer">{children}</div>}
     </label>
   )
 }

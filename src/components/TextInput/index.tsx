@@ -1,8 +1,6 @@
 import classNames from 'classnames'
 import * as React from 'react'
 
-const { omit } = require('lodash')
-
 const disabledStyle = 'o-50 pointer-events-none'
 const defaultStyle = 'b--black black bg-white'
 

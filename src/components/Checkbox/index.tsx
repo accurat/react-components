@@ -1,6 +1,6 @@
-import * as React from 'react'
 import classNames from 'classnames'
-import { InputPropsTypes, InputDefaultProps } from '../../commons/interfaces'
+import * as React from 'react'
+import { InputPropsTypes } from '../../commons/interfaces'
 
 const disabledStyle = 'o-30 pointer-events-none'
 const inactiveStyle = 'o-50'
