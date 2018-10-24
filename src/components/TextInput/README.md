@@ -1,4 +1,4 @@
-```tsx
+```jsx
 initialState = { emailValid: false }
 
 const checkEmailValidity = validity => {

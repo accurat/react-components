@@ -16,6 +16,14 @@ export interface TextInputpropsType {
   reset?: boolean
 }
 
+const handleChange = (
+  onChange: TextInputpropsType['onChange'],
+  checkValidity: TextInputpropsType['checkValidity'],
+) => (event: React.ChangeEvent<HTMLInputElement>) => {
+  onChange(event)
+  checkValidity(event.target.checkValidity())
+}
+
 export default function TextInput({
   value,
   defaultValue,
@@ -23,16 +31,11 @@ export default function TextInput({
   style = {},
   type = 'text',
   onChange = event => {},
-  checkValidity = condition => {},
+  checkValidity = condition => true,
   reset = false,
   disabled = false,
   ...props
 }: TextInputpropsType): JSX.Element {
-  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
-    onChange(event)
-    checkValidity(event.target.checkValidity())
-  }
-
   const classes = classNames(className, 'pa2 ba input-reset outline-transparent', {
     [disabledStyle]: disabled,
     [defaultStyle]: !reset,
@@ -49,7 +52,7 @@ export default function TextInput({
       value={value}
       defaultValue={defaultValue}
       disabled={disabled}
-      onChange={handleChange}
+      onChange={handleChange(onChange, checkValidity)}
     />
   )
 }
