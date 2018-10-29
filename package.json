@@ -36,6 +36,7 @@
   ],
   "devDependencies": {
     "accurapp-scripts": "^3.2.9",
+    "babel-preset-accurapp": "^4.0.6",
     "eslint-config-accurapp": "^3.0.1",
     "react-docgen-typescript": "^1.11.0",
     "react-styleguidist": "^6.2.5",
