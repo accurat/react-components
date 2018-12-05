@@ -16,7 +16,7 @@ module.exports = buildWebpackConfig([
   customConfig({
     externals: {
       // don't include react in the bundle
-      react: 'react',
+      react: 'React',
     },
     optimization: {
       // generate a single file
