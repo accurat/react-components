@@ -3,7 +3,7 @@
   "version": "0.2.2",
   "description": "Collection of React components used for Accurat projects.",
   "main": "lib/react-components.js",
-  "types": "lib/react-components.d.ts",
+  "types": "lib/lib/src/index.d.ts",
   "files": [
     "lib/"
   ],
