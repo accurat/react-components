@@ -1,5 +1,5 @@
-import classNames from 'classnames'
 import * as React from 'react'
+import classNames from 'classnames'
 
 const disabledStyle = 'o-50 pointer-events-none'
 const defaultStyle = 'b--black black bg-white'
@@ -12,7 +12,7 @@ export interface TextInputpropsType {
   defaultValue?: string
   disabled?: boolean
   onChange?: (event?: React.ChangeEvent<HTMLInputElement>) => void
-  checkValidity?: (cond: boolean) => boolean
+  checkValidity?: (cond: boolean) => void
   reset?: boolean
 }
 
@@ -30,8 +30,8 @@ export default function TextInput({
   className = '',
   style = {},
   type = 'text',
-  onChange = event => {},
-  checkValidity = condition => true,
+  onChange = () => {},
+  checkValidity = () => {},
   reset = false,
   disabled = false,
   ...props

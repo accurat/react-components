@@ -1,5 +1,5 @@
-import classNames from 'classnames'
 import * as React from 'react'
+import classNames from 'classnames'
 import { InputPropsTypes } from '../../commons/interfaces'
 
 const disabledStyle = 'o-30 pointer-events-none'
@@ -37,7 +37,7 @@ export default function Checkbox({
   style = {},
   disabled = false,
   checked = false,
-  onChange = event => {},
+  onChange = () => {},
   reset = false,
   ...props
 }: CheckBoxArguments): JSX.Element {
@@ -80,9 +80,7 @@ export default function Checkbox({
           }}
         />
         {checked &&
-          (svg ? (
-            svg
-          ) : (
+          (svg || (
             <CheckSvg
               className={`absolute absolute--fill center m-auto pointer-events-none ${inputClasses}`}
               style={{ width: 10, height: 10, fill: 'currentColor' }}

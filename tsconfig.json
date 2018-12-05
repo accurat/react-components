@@ -2,12 +2,12 @@
   "compilerOptions": {
     "baseUrl": ".",
     "rootDir": ".",
-    "outDir": "build",
+    "outDir": "lib",
     "module": "esnext",
     "target": "es5",
     "lib": ["es6", "es7", "es2017", "esnext", "dom"],
     "sourceMap": true,
-    "allowJs": true,
+    "declaration": true,
     "jsx": "react",
     "moduleResolution": "node",
     "forceConsistentCasingInFileNames": true,
@@ -20,5 +20,5 @@
     "experimentalDecorators": true,
     "skipLibCheck": true
   },
-  "exclude": ["node_modules", "build", "webpack.config.js", "lib", "styleguide.config.js", "docs"]
+  "exclude": ["node_modules", "webpack.config.js", "lib", "styleguide.config.js", "docs"]
 }

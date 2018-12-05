@@ -1,5 +1,5 @@
-import classNames from 'classnames'
 import * as React from 'react'
+import classNames from 'classnames'
 
 export interface FlexViewProps {
   children?: React.ReactNode
@@ -123,9 +123,9 @@ export default function FlexView({
 
     return classNames('flex', direction, contentAlignment, wrapClassName, className)
   }
-  // TODO - can you pass other props?
+
   return (
-    <div className={getClasses()} style={getStyle()}>
+    <div className={getClasses()} style={getStyle()} {...props}>
       {children}
     </div>
   )

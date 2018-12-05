@@ -1,9 +1,10 @@
-import classNames from 'classnames'
 import * as React from 'react'
+import classNames from 'classnames'
 import { InputPropsTypes } from '../../commons/interfaces'
 
 const disabledStyle = 'o-30 pointer-events-none'
 const inactiveStyle = 'o-50'
+const defaultInputStyle = 'br4 bg-black'
 
 export default function Toogle({
   children,
@@ -12,21 +13,20 @@ export default function Toogle({
   style = {},
   disabled = false,
   checked = false,
-  onChange = event => {},
+  onChange = () => {},
   reset = false,
 }: InputPropsTypes): JSX.Element {
   function handleChange(event: React.ChangeEvent<HTMLInputElement>): void {
     onChange(event.currentTarget.checked)
   }
 
-  const classes = classNames('flex flex-row justify-start items-center w-fit pointer', {
+  const classes = classNames(className, 'flex flex-row justify-start items-center w-fit pointer', {
     [disabledStyle]: disabled,
-    [inactiveStyle]: !checked,
-    [className]: className,
+    [inactiveStyle]: !checked && !reset,
   })
 
-  const inputClasses = classNames('relative br4 bg-black', {
-    [inputClassName]: inputClassName,
+  const inputClasses = classNames(inputClassName, 'relative', {
+    [defaultInputStyle]: !reset,
   })
 
   return (

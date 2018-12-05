@@ -1,10 +1,8 @@
-// TODO - make import and change filename to Select.ts
-
-import classNames from 'classnames'
 import * as React from 'react'
+import classNames from 'classnames'
+import Scrollbars from 'react-custom-scrollbars'
+import { omit } from 'lodash'
 import { InputDefaultProps } from '../../commons/interfaces'
-const { Scrollbars } = require('react-custom-scrollbars')
-const { omit } = require('lodash')
 
 const disabledStyle = 'o-50 pointer-events-none'
 const defaultStyle = 'b--black br1'
@@ -36,7 +34,7 @@ const DropdownSvg = ({ style }: DropDownParams): JSX.Element => (
 )
 
 export default class Select extends React.Component<SelectProps> {
-  public componentDidMount() {
+  componentDidMount() {
     document.body.addEventListener('mouseup', this.handleOutsideClick, {
       passive: true,
     })
@@ -45,34 +43,35 @@ export default class Select extends React.Component<SelectProps> {
     })
   }
 
-  public componentWillUnmount() {
+  componentWillUnmount() {
     document.body.removeEventListener('mouseup', this.handleOutsideClick)
     document.body.removeEventListener('touchend', this.handleOutsideClick)
   }
 
-  public static defaultProps = { ...InputDefaultProps, autoclose: true }
-  public state = { open: this.props.open }
-  public container: HTMLDivElement = null
+  static defaultProps = { ...InputDefaultProps, autoclose: true }
+  state = { open: this.props.open }
+  container: HTMLDivElement = null
 
-  private setClose = (): void => this.setState({ open: false })
-  private setOpen = (): void => this.setState({ open: true })
-  private toogleOpen = (): void => this.setState({ open: !this.state.open })
+  setClose = (): void => this.setState({ open: false })
+  setOpen = (): void => this.setState({ open: true })
+  toogleOpen = (): void => this.setState({ open: !this.state.open })
 
-  private handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
+  handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
     this.toogleOpen()
     this.props.onClick(event)
   }
 
-  private handleOutsideClick = (event: MouseEvent) => {
+  handleOutsideClick = (event: MouseEvent) => {
     if (
       !(event.target instanceof Element) || // https://stackoverflow.com/a/50326668
       this.container.contains(event.target)
-    )
+    ) {
       return
+    }
     this.setClose()
   }
 
-  public render() {
+  render() {
     const {
       children,
       className,
@@ -92,9 +91,9 @@ export default class Select extends React.Component<SelectProps> {
     })
 
     const childrenClasses = classNames(childrenClassName, 'absolute z-5', {
-      "dn": !open,
+      dn: !open,
       'w-100': scrollable,
-      "h5": open && scrollable,
+      h5: open && scrollable,
       [defaultChildrenStyle]: !reset,
     })
 

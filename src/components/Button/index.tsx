@@ -1,5 +1,5 @@
-import classNames from 'classnames'
 import * as React from 'react'
+import classNames from 'classnames'
 
 const disabledStyle = 'o-50 pointer-events-none'
 const defaultStyle = 'ph3 pv1 br1 bg-black white b--none'
@@ -23,7 +23,7 @@ export default function Button({
   reset = false,
   className = '',
   style = {},
-  onClick = event => {},
+  onClick = () => {},
   type = 'button',
   ...props
 }: ButtonProps): JSX.Element {

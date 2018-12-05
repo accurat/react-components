@@ -1,5 +1,5 @@
-import classNames from 'classnames'
 import * as React from 'react'
+import classNames from 'classnames'
 import { InputPropsTypes } from '../../commons/interfaces'
 
 const disabledStyle = 'o-30 pointer-events-none'
@@ -13,7 +13,7 @@ export default function Radio({
   style = {},
   disabled = false,
   checked = false,
-  onChange = event => {},
+  onChange = () => {},
   reset = false,
   ...props
 }: InputPropsTypes): JSX.Element {
