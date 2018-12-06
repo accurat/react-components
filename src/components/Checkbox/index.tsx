@@ -26,7 +26,7 @@ const CheckSvg = ({ className, style }: SvgParams): JSX.Element => (
 )
 
 export interface CheckBoxArguments extends InputPropsTypes {
-  svg: JSX.Element
+  svg: (className?: string, style?: any) => JSX.Element // TODO
 }
 
 export default function Checkbox({
@@ -57,6 +57,8 @@ export default function Checkbox({
     },
   )
 
+  const SvgComponent = svg || CheckSvg
+
   return (
     <label style={style} className={classes}>
       <div
@@ -79,13 +81,12 @@ export default function Checkbox({
             height: 18,
           }}
         />
-        {checked &&
-          (svg || (
-            <CheckSvg
-              className={`absolute absolute--fill center m-auto pointer-events-none ${inputClasses}`}
-              style={{ width: 10, height: 10, fill: 'currentColor' }}
-            />
-          ))}
+        {checked && (
+          <SvgComponent
+            className={`absolute absolute--fill center m-auto pointer-events-none ${inputClasses}`}
+            style={{ width: 10, height: 10, fill: 'currentColor' }}
+          />
+        )}
       </div>
       {children && <div className="ml2">{children}</div>}
     </label>
