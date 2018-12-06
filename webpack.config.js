@@ -9,7 +9,7 @@ module.exports = buildWebpackConfig([
     setOutput({
       path: path.resolve('./lib'),
       filename: 'react-components.js',
-      libraryTarget: 'umd',
+      libraryTarget: 'commonjs-module',
     }),
   ]),
   typescript({ silent: true }),
