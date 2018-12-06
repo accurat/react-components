@@ -1,10 +1,9 @@
 const path = require('path')
 const { buildWebpackConfig } = require('webpack-preset-accurapp')
-const { entryPoint, env, setOutput, customConfig } = require('@webpack-blocks/webpack')
+const { env, setOutput, customConfig } = require('@webpack-blocks/webpack')
 const typescript = require('webpack-blocks-ts')
 
 module.exports = buildWebpackConfig([
-  entryPoint('./src/index.ts'),
   env('production', [
     setOutput({
       path: path.resolve('./lib'),

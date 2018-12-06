@@ -57,7 +57,7 @@
     "tslint": "^5.11.0",
     "typescript": "^3.2.1",
     "webpack-blocks-ts": "^2.0.1",
-    "webpack-preset-accurapp": "^4.1.7"
+    "webpack-preset-accurapp": "^4.1.8"
   },
   "dependencies": {
     "classnames": "^2.2.6",
