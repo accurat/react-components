@@ -25,8 +25,13 @@ const CheckSvg = ({ className, style }: SvgParams): JSX.Element => (
   </svg>
 )
 
+interface SVGProps {
+  className?: string
+  style?: React.CSSProperties
+}
+
 export interface CheckBoxArguments extends InputPropsTypes {
-  svg: (className?: string, style?: any) => JSX.Element // TODO
+  svg: React.SFC<SVGProps> // TODO
 }
 
 export default function Checkbox({
