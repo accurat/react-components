@@ -9,19 +9,14 @@ module.exports = buildWebpackConfig([
     setOutput({
       path: path.resolve('./lib'),
       filename: 'react-components.js',
-      libraryTarget: 'commonjs-module',
+      libraryTarget: 'umd',
     }),
   ]),
   typescript({ silent: true }),
   customConfig({
     externals: {
       // don't include react in the bundle
-      react: {
-        root: 'React',
-        commonjs2: 'react',
-        commonjs: 'react',
-        amd: 'react',
-      },
+      react: 'react',
     },
     optimization: {
       // generate a single file
