@@ -6,7 +6,7 @@ const disabledStyle = 'o-30 pointer-events-none'
 const inactiveStyle = 'o-50'
 const defaultInputStyle = 'br4 bg-black'
 
-export default function Toogle({
+export default function Toggle({
   children,
   className = '',
   inputClassName = '',

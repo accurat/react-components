@@ -6,12 +6,7 @@ const disabledStyle = 'o-30 pointer-events-none'
 const inactiveStyle = 'o-50'
 const defaultInputStyle = 'bw1 b--black'
 
-export interface SvgParams {
-  className: string
-  style: object
-}
-
-const CheckSvg = ({ className, style }: SvgParams): JSX.Element => (
+const CheckSvg: React.SFC<SVGProps> = ({ className, style }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 21.25 18.58"
@@ -31,12 +26,12 @@ interface SVGProps {
 }
 
 export interface CheckBoxArguments extends InputPropsTypes {
-  svg: React.SFC<SVGProps> // TODO
+  propSvg: React.SFC<SVGProps> | null // TODO
 }
 
 export default function Checkbox({
   children,
-  svg,
+  propSvg = null,
   className = '',
   inputClassName = '',
   style = {},
@@ -45,7 +40,7 @@ export default function Checkbox({
   onChange = () => {},
   reset = false,
   ...props
-}: CheckBoxArguments): JSX.Element {
+}: CheckBoxArguments) {
   function handleChange(event: React.ChangeEvent<HTMLInputElement>): void {
     onChange(event.currentTarget.checked)
   }
@@ -62,7 +57,7 @@ export default function Checkbox({
     },
   )
 
-  const SvgComponent = svg || CheckSvg
+  const SvgComponent = propSvg || CheckSvg
 
   return (
     <label style={style} className={classes}>
