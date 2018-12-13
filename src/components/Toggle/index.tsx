@@ -36,8 +36,6 @@ export default function Toggle({
         style={{
           height: 20,
           width: 38,
-          minHeight: 20,
-          minWidth: 38,
         }}
       >
         <input
