@@ -1,24 +1,32 @@
 const path = require('path')
-const buildWebpackConfig = require('webpack-preset-accurapp')
-const { NamedModulesPlugin } = require('webpack')
-const { setOutput, addPlugins, customConfig } = require('webpack-blocks')
-const npmModulesExternals = require('webpack-node-externals')
+const { buildWebpackConfig } = require('webpack-preset-accurapp')
+const { env, setOutput, customConfig } = require('@webpack-blocks/webpack')
+const typescript = require('webpack-blocks-ts')
 
-function setExternals(externals) {
-  return customConfig({ externals })
-}
-
-const appConfig = buildWebpackConfig()
-
-const libConfig = buildWebpackConfig([
-  setOutput({
-    ...appConfig.output,
-    path: path.resolve('./lib'),
-    filename: 'react-components.js',
-    libraryTarget: 'commonjs2',
+module.exports = buildWebpackConfig([
+  env('production', [
+    setOutput({
+      path: path.resolve('./lib'),
+      filename: 'react-components.js',
+      libraryTarget: 'commonjs2',
+    }),
+  ]),
+  typescript({ silent: true }),
+  customConfig({
+    externals: {
+      // don't include react in the bundle
+      react: {
+        root: 'React',
+        commonjs2: 'react',
+        commonjs: 'react',
+        amd: 'react',
+      },
+    },
+    optimization: {
+      // generate a single file
+      splitChunks: false,
+      // don't include every component if the user requires only one
+      sideEffects: false,
+    },
   }),
-  setExternals([npmModulesExternals()]),
-  addPlugins([new NamedModulesPlugin()]),
 ])
-
-module.exports = libConfig
