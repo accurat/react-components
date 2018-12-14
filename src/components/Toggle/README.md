@@ -1,7 +1,8 @@
 ```jsx
 initialState = {
   first: false,
-  second: true
+  second: true,
+  third: true
 }
 
 const changeSelected = (item) => (value) => {
@@ -14,6 +15,10 @@ const changeSelected = (item) => (value) => {
   <Toggle onChange={changeSelected('first')} checked={state.first}>Toggle me</Toggle>
 
   <Toggle onChange={changeSelected('second')} checked={state.second} className="red" inputClassName="bg-red">
+    Colorful Toggle
+  </Toggle>
+
+  <Toggle onChange={changeSelected('third')} checked={state.third} className="blue" invert="bg-blue">
     Colorful Toggle
   </Toggle>
 
