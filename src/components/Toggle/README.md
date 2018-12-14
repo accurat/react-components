@@ -18,7 +18,7 @@ const changeSelected = (item) => (value) => {
     Colorful Toggle
   </Toggle>
 
-  <Toggle onChange={changeSelected('third')} checked={state.third} className="blue" invert="bg-blue">
+  <Toggle onChange={changeSelected('third')} checked={state.third} className="blue" invertColor="bg-blue">
     Colorful Toggle
   </Toggle>
 

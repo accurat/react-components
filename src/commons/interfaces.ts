@@ -9,7 +9,7 @@ export interface InputPropsTypes {
   checked?: boolean
   onChange?: (event: boolean) => void // This has to be fixed
   reset?: boolean
-  invert?: string
+  invertColor?: string
 }
 
 export const InputDefaultProps: object = {

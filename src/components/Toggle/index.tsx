@@ -6,7 +6,8 @@ const disabledStyle = 'o-30 pointer-events-none'
 const inactiveStyle = 'o-50'
 const defaultInputStyle = 'br4 bg-black'
 
-const invertInputStyle = (invert: string) => `ba br4 bg-transparent b--${invert.replace(/bg-/, '')}`
+const invertInputStyle = (invertColor: string) =>
+  `ba br4 bg-transparent b--${invertColor.replace(/bg-/, '')}`
 
 export const Toggle: React.SFC<InputPropsTypes> = ({
   children,
@@ -17,7 +18,7 @@ export const Toggle: React.SFC<InputPropsTypes> = ({
   checked = false,
   onChange = () => {},
   reset = false,
-  invert = '',
+  invertColor = '',
 }) => {
   function handleChange(event: React.ChangeEvent<HTMLInputElement>): void {
     onChange(event.currentTarget.checked)
@@ -30,7 +31,7 @@ export const Toggle: React.SFC<InputPropsTypes> = ({
 
   const inputClasses = classNames(inputClassName, 'relative', {
     [defaultInputStyle]: !reset,
-    [invertInputStyle(invert)]: invert && !reset,
+    [invertInputStyle(invertColor)]: invertColor && !reset,
   })
 
   return (
@@ -54,7 +55,7 @@ export const Toggle: React.SFC<InputPropsTypes> = ({
         />
         <div
           className={`absolute w1 h1 center-vertical
-           ${invert || 'bg-white'}
+           ${invertColor || 'bg-white'}
            br-100 top-0 bottom-0 pointer-events-none`}
           style={{
             transition: 'left 0.2s',
