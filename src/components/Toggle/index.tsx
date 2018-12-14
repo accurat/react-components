@@ -18,7 +18,7 @@ export const Toggle: React.SFC<InputPropsTypes> = ({
   onChange = () => {},
   reset = false,
   invert = '',
-}: InputPropsTypes) => {
+}) => {
   function handleChange(event: React.ChangeEvent<HTMLInputElement>): void {
     onChange(event.currentTarget.checked)
   }
