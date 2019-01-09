@@ -8,7 +8,9 @@ module.exports = buildWebpackConfig([
     setOutput({
       path: path.resolve('./lib'),
       filename: 'react-components.js',
-      libraryTarget: 'commonjs2',
+      // TODO use 'module' when it will be supported
+      // https://github.com/webpack/webpack/issues/2933
+      libraryTarget: 'commonjs-module',
     }),
   ]),
   typescript({ silent: true }),
@@ -22,11 +24,15 @@ module.exports = buildWebpackConfig([
         amd: 'react',
       },
     },
+    // turn off performance hints
+    performance: false,
     optimization: {
       // generate a single file
       splitChunks: false,
       // don't include every component if the user requires only one
       sideEffects: false,
+      // don't minify
+      minimize: false,
     },
   }),
 ])

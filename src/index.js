@@ -1,7 +1,9 @@
-export { default as Button } from './components/Button'
-export { default as Checkbox } from './components/Checkbox'
-export { default as FlexView } from './components/FlexView'
-export { default as Radio } from './components/Radio'
-export { default as Select } from './components/Select'
-export { default as TextInput } from './components/TextInput'
-export { default as Toggle } from './components/Toggle'
+import Button from './components/Button'
+import Checkbox from './components/Checkbox'
+import FlexView from './components/FlexView'
+import Radio from './components/Radio'
+import Select from './components/Select'
+import TextInput from './components/TextInput'
+import Toggle from './components/Toggle'
+
+export { Button, Checkbox, FlexView, Radio, Select, TextInput, Toggle }
