@@ -5,7 +5,7 @@ interface SVGProps {
     style?: React.CSSProperties;
 }
 export interface CheckBoxArguments extends InputPropsTypes {
-    propSvg: React.SFC<SVGProps> | null;
+    propSvg?: React.SFC<SVGProps>;
 }
 export default function Checkbox({ children, propSvg, className, inputClassName, style, disabled, checked, onChange, reset, ...props }: CheckBoxArguments): JSX.Element;
 export {};
