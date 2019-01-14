@@ -26,7 +26,7 @@ interface SVGProps {
 }
 
 export interface CheckBoxArguments extends InputPropsTypes {
-  propSvg: React.SFC<SVGProps> | null // TODO
+  propSvg?: React.SFC<SVGProps>
 }
 
 export default function Checkbox({
