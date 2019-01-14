@@ -1,9 +1,11 @@
+import * as React from 'react';
 import { InputPropsTypes } from '../../commons/interfaces';
-export interface SvgParams {
-    className: string;
-    style: object;
+interface SVGProps {
+    className?: string;
+    style?: React.CSSProperties;
 }
 export interface CheckBoxArguments extends InputPropsTypes {
-    svg: JSX.Element;
+    propSvg: React.SFC<SVGProps> | null;
 }
-export default function Checkbox({ children, svg, className, inputClassName, style, disabled, checked, onChange, reset, ...props }: CheckBoxArguments): JSX.Element;
+export default function Checkbox({ children, propSvg, className, inputClassName, style, disabled, checked, onChange, reset, ...props }: CheckBoxArguments): JSX.Element;
+export {};
