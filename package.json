@@ -32,7 +32,7 @@
   "scripts": {
     "start": "styleguidist server",
     "build": "accurapp-scripts build",
-    "build:styleguide": "styleguidist build",
+    "build:styleguide": "rm -rf docs && styleguidist build",
     "prepublishOnly": "npm run build"
   },
   "browserslist": [
