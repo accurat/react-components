@@ -10,7 +10,7 @@ module.exports = buildWebpackConfig([
       filename: 'react-components.js',
       // TODO use 'module' when it will be supported
       // https://github.com/webpack/webpack/issues/2933
-      libraryTarget: 'commonjs-module',
+      libraryTarget: 'commonjs',
     }),
   ]),
   typescript({ silent: true }),
