@@ -1,12 +1,12 @@
-import * as React from 'react';
-export interface TextInputpropsType {
+import { InputPropsTypes, InputChangeFunction } from 'src/commons/interfaces';
+export interface TextInputpropsType extends InputPropsTypes {
     className?: string;
     style?: object;
     type?: 'text' | 'email' | 'password' | 'number' | 'tel' | 'time' | 'date' | 'datetime-local';
     value?: string | number;
     defaultValue?: string;
     disabled?: boolean;
-    onChange?: (event?: React.ChangeEvent<HTMLInputElement>) => void;
+    onChange?: InputChangeFunction;
     checkValidity?: (cond: boolean) => void;
     reset?: boolean;
 }
