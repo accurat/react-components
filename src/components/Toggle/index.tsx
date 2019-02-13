@@ -1,6 +1,10 @@
 import * as React from 'react'
 import classNames from 'classnames'
-import { InputPropsTypes } from '../../commons/interfaces'
+import { InputPropsTypes, BooleanChangeFnType } from '../../commons/interfaces'
+
+interface ToggleProps extends InputPropsTypes {
+  onChange?: BooleanChangeFnType
+}
 
 const disabledStyle = 'o-30 pointer-events-none'
 const inactiveStyle = 'o-50'
@@ -15,7 +19,7 @@ export default function Toggle({
   checked = false,
   onChange = () => {},
   reset = false,
-}: InputPropsTypes): JSX.Element {
+}: ToggleProps): JSX.Element {
   function handleChange(event: React.ChangeEvent<HTMLInputElement>): void {
     onChange(event.currentTarget.checked)
   }

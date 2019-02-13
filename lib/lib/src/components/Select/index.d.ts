@@ -29,7 +29,7 @@ export default class Select extends React.Component<SelectProps> {
     setClose: () => void;
     setOpen: () => void;
     toogleOpen: () => void;
-    handleClick: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+    handleClick: (event: React.MouseEvent<HTMLDivElement>) => void;
     handleOutsideClick: (event: MouseEvent) => void;
     render(): JSX.Element;
 }
