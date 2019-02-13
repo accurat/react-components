@@ -1,5 +1,10 @@
 import { noop } from 'lodash'
 
+export type BooleanChangeFunction = (event: boolean) => void
+export type InputChangeFunction = (event: React.ChangeEvent<HTMLInputElement>) => void
+
+type OnChangeFunction = BooleanChangeFunction | InputChangeFunction
+
 export interface InputPropsTypes {
   children?: React.ReactNode
   className?: string
@@ -7,7 +12,7 @@ export interface InputPropsTypes {
   style?: object
   disabled?: boolean
   checked?: boolean
-  onChange?: (event: boolean) => void // This has to be fixed
+  onChange?: OnChangeFunction
   reset?: boolean
 }
 

@@ -1,10 +1,11 @@
 import * as React from 'react'
 import classNames from 'classnames'
+import { InputPropsTypes } from 'src/commons/interfaces'
 
 const disabledStyle = 'o-50 pointer-events-none'
 const defaultStyle = 'b--black black bg-white'
 
-export interface TextInputpropsType {
+export interface TextInputpropsType extends InputPropsTypes {
   className?: string
   style?: object
   type?: 'text' | 'email' | 'password' | 'number' | 'tel' | 'time' | 'date' | 'datetime-local'

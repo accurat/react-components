@@ -1,10 +1,14 @@
 import * as React from 'react'
 import classNames from 'classnames'
-import { InputPropsTypes } from '../../commons/interfaces'
+import { InputPropsTypes, BooleanChangeFunction } from '../../commons/interfaces'
 
 const disabledStyle = 'o-30 pointer-events-none'
 const inactiveStyle = 'o-50'
 const defaultInputStyle = 'bw1 b--black bg-black outline-transparent'
+
+export interface RadioProps extends InputPropsTypes {
+  onChange?: BooleanChangeFunction
+}
 
 export default function Radio({
   children,
@@ -16,7 +20,7 @@ export default function Radio({
   onChange = () => {},
   reset = false,
   ...props
-}: InputPropsTypes): JSX.Element {
+}: RadioProps): JSX.Element {
   function handleChange(event: React.ChangeEvent<HTMLInputElement>): void {
     onChange(event.currentTarget.checked)
   }
