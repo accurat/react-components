@@ -48,7 +48,7 @@ export default class Select extends React.Component<SelectProps> {
     document.body.removeEventListener('touchend', this.handleOutsideClick)
   }
 
-  static defaultProps = { ...InputDefaultProps, autoclose: true }
+  static defaultProps = { ...InputDefaultProps, autoclose: true, childrenClassName: '' }
   state = { open: this.props.open }
   container: HTMLDivElement = null
 
