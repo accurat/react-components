@@ -1,7 +1,7 @@
 /// <reference types="react" />
-export declare type BooleanChangeFunction = (event: boolean) => void;
-export declare type InputChangeFunction = (event: React.ChangeEvent<HTMLInputElement>) => void;
-declare type OnChangeFunction = BooleanChangeFunction | InputChangeFunction;
+export declare type BooleanChangeFnType = (event: boolean) => void;
+export declare type InputChangeFnType = (event: React.ChangeEvent<HTMLInputElement>) => void;
+declare type OnChangeFunction = BooleanChangeFnType | InputChangeFnType;
 export interface InputPropsTypes {
     children?: React.ReactNode;
     className?: string;

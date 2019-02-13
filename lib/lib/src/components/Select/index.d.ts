@@ -21,7 +21,6 @@ export default class Select extends React.Component<SelectProps> {
     componentWillUnmount(): void;
     static defaultProps: {
         autoclose: boolean;
-        childrenClassName: string;
     };
     state: {
         open: boolean;
