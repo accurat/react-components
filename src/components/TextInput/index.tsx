@@ -1,12 +1,12 @@
 import * as React from 'react'
 import classNames from 'classnames'
-import { InputPropsTypes, InputChangeFunction } from 'src/commons/interfaces'
+import { InputPropsTypes, InputChangeFnType } from 'src/commons/interfaces'
 
 const disabledStyle = 'o-50 pointer-events-none'
 const defaultStyle = 'b--black black bg-white'
 
 export interface TextInputpropsType extends InputPropsTypes {
-  onChange?: InputChangeFunction
+  onChange?: InputChangeFnType
   type?: 'text' | 'email' | 'password' | 'number' | 'tel' | 'time' | 'date' | 'datetime-local'
   value?: string | number
   defaultValue?: string

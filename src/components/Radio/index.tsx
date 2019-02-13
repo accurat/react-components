@@ -1,13 +1,13 @@
 import * as React from 'react'
 import classNames from 'classnames'
-import { InputPropsTypes, BooleanChangeFunction } from '../../commons/interfaces'
+import { InputPropsTypes, BooleanChangeFnType } from '../../commons/interfaces'
 
 const disabledStyle = 'o-30 pointer-events-none'
 const inactiveStyle = 'o-50'
 const defaultInputStyle = 'bw1 b--black bg-black outline-transparent'
 
 export interface RadioProps extends InputPropsTypes {
-  onChange?: BooleanChangeFunction
+  onChange?: BooleanChangeFnType
 }
 
 export default function Radio({

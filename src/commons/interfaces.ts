@@ -1,9 +1,9 @@
 import { noop } from 'lodash'
 
-export type BooleanChangeFunction = (event: boolean) => void
-export type InputChangeFunction = (event: React.ChangeEvent<HTMLInputElement>) => void
+export type BooleanChangeFnType = (event: boolean) => void
+export type InputChangeFnType = (event: React.ChangeEvent<HTMLInputElement>) => void
 
-type OnChangeFunction = BooleanChangeFunction | InputChangeFunction
+type OnChangeFunction = BooleanChangeFnType | InputChangeFnType
 
 export interface InputPropsTypes {
   children?: React.ReactNode
