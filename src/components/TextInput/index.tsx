@@ -6,15 +6,11 @@ const disabledStyle = 'o-50 pointer-events-none'
 const defaultStyle = 'b--black black bg-white'
 
 export interface TextInputpropsType extends InputPropsTypes {
-  className?: string
-  style?: object
+  onChange?: InputChangeFunction
   type?: 'text' | 'email' | 'password' | 'number' | 'tel' | 'time' | 'date' | 'datetime-local'
   value?: string | number
   defaultValue?: string
-  disabled?: boolean
-  onChange?: InputChangeFunction
   checkValidity?: (cond: boolean) => void
-  reset?: boolean
 }
 
 const handleChange = (
