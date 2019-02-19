@@ -1,4 +1,4 @@
-import { InputPropsTypes, InputChangeFnType } from 'src/commons/interfaces';
+import { InputPropsTypes, InputChangeFnType } from '../../commons/interfaces';
 export interface TextInputpropsType extends InputPropsTypes {
     onChange?: InputChangeFnType;
     type?: 'text' | 'email' | 'password' | 'number' | 'tel' | 'time' | 'date' | 'datetime-local';
