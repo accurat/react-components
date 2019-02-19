@@ -33,7 +33,7 @@
     "start": "styleguidist server",
     "build": "accurapp-scripts build",
     "build:styleguide": "rm -rf docs && styleguidist build",
-    "publish": "npm publish --access public",
+    "pub": "npm publish --access public",
     "prepublishOnly": "npm run build"
   },
   "browserslist": [
