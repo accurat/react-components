@@ -1,6 +1,6 @@
 import * as React from 'react'
 import classNames from 'classnames'
-import { InputPropsTypes, InputChangeFnType } from 'src/commons/interfaces'
+import { InputPropsTypes, InputChangeFnType } from '../../commons/interfaces'
 
 const disabledStyle = 'o-50 pointer-events-none'
 const defaultStyle = 'b--black black bg-white'
