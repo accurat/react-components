@@ -1,6 +1,6 @@
 import * as React from 'react'
 import classNames from 'classnames'
-import { InputPropsTypes, BooleanChangeFnType } from '../../commons/interfaces'
+import { InputPropsTypes, BooleanChangeFnType, WeakenType } from '../../commons/interfaces'
 
 const disabledStyle = 'o-30 pointer-events-none'
 const inactiveStyle = 'o-50'
@@ -25,7 +25,9 @@ interface SVGProps {
   style?: React.CSSProperties
 }
 
-export interface CheckBoxArguments extends InputPropsTypes {
+export interface CheckBoxArguments
+  extends InputPropsTypes,
+    WeakenType<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
   propSvg?: React.SFC<SVGProps>
   onChange?: BooleanChangeFnType
 }

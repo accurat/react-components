@@ -1,11 +1,14 @@
 import * as React from 'react'
 import classNames from 'classnames'
-import { InputPropsTypes, InputChangeFnType } from '../../commons/interfaces'
+import { InputPropsTypes, InputChangeFnType } from 'src/commons/interfaces'
+import { HTMLProps } from 'react'
 
 const disabledStyle = 'o-50 pointer-events-none'
 const defaultStyle = 'b--black black bg-white'
 
-export interface TextInputpropsType extends InputPropsTypes {
+export interface TextInputpropsType
+  extends InputPropsTypes,
+    React.InputHTMLAttributes<HTMLInputElement> {
   onChange?: InputChangeFnType
   type?: 'text' | 'email' | 'password' | 'number' | 'tel' | 'time' | 'date' | 'datetime-local'
   value?: string | number
