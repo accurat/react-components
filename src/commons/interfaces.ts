@@ -9,7 +9,7 @@ export interface InputPropsTypes {
   children?: React.ReactNode
   className?: string
   inputClassName?: string
-  style?: object
+  style?: React.CSSProperties
   disabled?: boolean
   checked?: boolean
   onChange?: OnChangeFunction
@@ -26,3 +26,9 @@ export const InputDefaultProps: object = {
   onChange: noop,
   reset: false,
 }
+
+type WeakenType<T, K extends keyof T> = { [P in keyof T]: P extends K ? unknown : T[P] }
+export type ChangelessInputProps = WeakenType<
+  React.InputHTMLAttributes<HTMLInputElement>,
+  'onChange'
+>

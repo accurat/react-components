@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { InputPropsTypes, BooleanChangeFnType } from '../../commons/interfaces';
+import { InputPropsTypes, BooleanChangeFnType, ChangelessInputProps } from '../../commons/interfaces';
 interface SVGProps {
     className?: string;
     style?: React.CSSProperties;
 }
-export interface CheckBoxArguments extends InputPropsTypes {
+export interface CheckBoxArguments extends InputPropsTypes, ChangelessInputProps {
     propSvg?: React.SFC<SVGProps>;
     onChange?: BooleanChangeFnType;
 }

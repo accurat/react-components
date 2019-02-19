@@ -1,8 +1,12 @@
 import * as React from 'react'
 import classNames from 'classnames'
-import { InputPropsTypes, BooleanChangeFnType } from '../../commons/interfaces'
+import {
+  InputPropsTypes,
+  BooleanChangeFnType,
+  ChangelessInputProps,
+} from '../../commons/interfaces'
 
-interface ToggleProps extends InputPropsTypes {
+interface ToggleProps extends InputPropsTypes, ChangelessInputProps {
   onChange?: BooleanChangeFnType
 }
 
