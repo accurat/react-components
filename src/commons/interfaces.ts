@@ -27,4 +27,8 @@ export const InputDefaultProps: object = {
   reset: false,
 }
 
-export type WeakenType<T, K extends keyof T> = { [P in keyof T]: P extends K ? any : T[P] }
+type WeakenType<T, K extends keyof T> = { [P in keyof T]: P extends K ? any : T[P] }
+export type ChangelessInputProps = WeakenType<
+  React.InputHTMLAttributes<HTMLInputElement>,
+  'onChange'
+>
