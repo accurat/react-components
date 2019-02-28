@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { InputPropsTypes, InputChangeFnType } from 'src/commons/interfaces';
+import { InputPropsTypes, InputChangeFnType } from '../../commons/interfaces';
 export interface TextInputpropsType extends InputPropsTypes, React.InputHTMLAttributes<HTMLInputElement> {
     onChange?: InputChangeFnType;
     type?: 'text' | 'email' | 'password' | 'number' | 'tel' | 'time' | 'date' | 'datetime-local';
