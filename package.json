@@ -33,7 +33,6 @@
     "start": "styleguidist server",
     "build": "accurapp-scripts build",
     "build:styleguide": "rm -rf docs && styleguidist build",
-    "pub": "npm publish --access public",
     "prepublishOnly": "npm run build"
   },
   "browserslist": [
@@ -70,5 +69,8 @@
     "react-dom": "^16.6.3",
     "tachyons": "^4.11.1",
     "tachyons-extra": "^1.0.3"
-  }
+  },
+  "publishConfig": {
+    "access": "public"
+  } 
 }
