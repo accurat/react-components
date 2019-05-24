@@ -34,7 +34,7 @@ export interface CheckBoxArguments extends InputPropsTypes, ChangelessInputProps
   onChange?: BooleanChangeFnType
 }
 
-export default function Checkbox({
+export function Checkbox({
   children,
   propSvg = null,
   className = '',

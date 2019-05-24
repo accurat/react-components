@@ -13,10 +13,10 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void
   className?: string
   style?: object
-  type?: string
+  type?: 'submit' | 'reset' | 'button'
 }
 
-export default function Button({
+export function Button({
   children,
   disabled = false,
   transparent = false,

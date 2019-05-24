@@ -13,7 +13,7 @@ export interface DropDownParams {
 }
 
 export interface SelectProps {
-  children?: React.ReactNode
+  children?: React.ReactElement
   className?: string
   childrenClassName?: string
   style?: object
@@ -33,7 +33,7 @@ const DropdownSvg = ({ style }: DropDownParams): JSX.Element => (
   </svg>
 )
 
-export default class Select extends React.Component<SelectProps> {
+export class Select extends React.Component<SelectProps> {
   componentDidMount() {
     document.body.addEventListener('mouseup', this.handleOutsideClick, {
       passive: true,
@@ -61,7 +61,7 @@ export default class Select extends React.Component<SelectProps> {
     this.props.onClick(event)
   }
 
-  handleOutsideClick = (event: MouseEvent) => {
+  handleOutsideClick = (event: MouseEvent | TouchEvent) => {
     if (
       !(event.target instanceof Element) || // https://stackoverflow.com/a/50326668
       this.container.contains(event.target)
