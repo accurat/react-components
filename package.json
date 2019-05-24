@@ -3,7 +3,7 @@
   "version": "0.3.7",
   "description": "Collection of React components used for Accurat projects.",
   "main": "lib/react-components.js",
-  "types": "lib/lib/src/index.d.ts",
+  "types": "lib/react-components.d.ts",
   "files": [
     "lib/"
   ],
@@ -31,7 +31,7 @@
   ],
   "scripts": {
     "start": "styleguidist server",
-    "build": "accurapp-scripts build",
+    "build": "accurapp-scripts build && tsc --project . --emitDeclarationOnly --outFile lib/react-components.d.ts",
     "build:styleguide": "rm -rf docs && styleguidist build",
     "prepublishOnly": "npm run build"
   },
