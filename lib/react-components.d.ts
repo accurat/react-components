@@ -125,7 +125,7 @@ declare module "src/components/Toggle/index" {
     }
     export function Toggle({ children, className, inputClassName, style, disabled, checked, onChange, reset, }: ToggleProps): JSX.Element;
 }
-declare module "src/index" {
+declare module "@accurat/react-components" {
     export { Button } from "src/components/Button/index";
     export { Checkbox } from "src/components/Checkbox/index";
     export { FlexView } from "src/components/FlexView/index";

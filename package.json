@@ -31,7 +31,7 @@
   ],
   "scripts": {
     "start": "styleguidist server",
-    "build": "accurapp-scripts build && tsc --project . --emitDeclarationOnly --outFile lib/react-components.d.ts",
+    "build": "accurapp-scripts build && tsc --project . --emitDeclarationOnly --outFile lib/react-components.d.ts && replace-in-file 'src/index' '@accurat/react-components' lib/react-components.d.ts",
     "build:styleguide": "rm -rf docs && styleguidist build",
     "prepublishOnly": "npm run build"
   },
@@ -52,6 +52,7 @@
     "react-docgen-typescript": "^1.12.4",
     "react-dom": "^16.8.6",
     "react-styleguidist": "^8.0.6",
+    "replace-in-file": "^4.1.0",
     "tachyons": "^4.11.1",
     "tachyons-extra": "^1.1.3",
     "tslint": "^5.12.0",
