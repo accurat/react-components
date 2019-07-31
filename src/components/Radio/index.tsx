@@ -14,7 +14,7 @@ export interface RadioProps extends InputPropsTypes, ChangelessInputProps {
   onChange?: BooleanChangeFnType
 }
 
-export default function Radio({
+export function Radio({
   children,
   className = '',
   inputClassName = '',

@@ -1,7 +1,7 @@
 import * as React from 'react'
 import classNames from 'classnames'
-import { InputPropsTypes, InputChangeFnType } from '../../commons/interfaces'
 import { HTMLProps } from 'react'
+import { InputPropsTypes, InputChangeFnType } from '../../commons/interfaces'
 
 const disabledStyle = 'o-50 pointer-events-none'
 const defaultStyle = 'b--black black bg-white'
@@ -24,7 +24,7 @@ const handleChange = (
   checkValidity(event.target.checkValidity())
 }
 
-export default function TextInput({
+export function TextInput({
   value,
   defaultValue,
   className = '',

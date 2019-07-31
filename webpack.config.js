@@ -1,7 +1,6 @@
 const path = require('path')
 const { buildWebpackConfig } = require('webpack-preset-accurapp')
 const { env, setOutput, customConfig } = require('@webpack-blocks/webpack')
-const typescript = require('webpack-blocks-ts')
 
 module.exports = buildWebpackConfig([
   env('production', [
@@ -13,7 +12,6 @@ module.exports = buildWebpackConfig([
       libraryTarget: 'commonjs',
     }),
   ]),
-  typescript({ silent: true }),
   customConfig({
     externals: {
       // don't include react in the bundle
