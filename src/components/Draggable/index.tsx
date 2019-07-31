@@ -1,6 +1,9 @@
 import * as React from 'react'
+import { uniqueId } from 'lodash'
+import classNames from 'classnames'
 
 type HTMLDragEvt = React.DragEvent<HTMLDivElement>
+type OnDrag = (event: HTMLDragEvt) => void
 
 interface State {
   dragging: boolean
@@ -10,15 +13,14 @@ interface State {
 
 interface DefaultProps {
   children: string
-  hoverColor?: string
-  variableVerbose?: string
-  draggingOpacity?: number
+  draggingClasses: string
+  hoveredClasses: string
   // Event Props
-  onDragStart?: (event: HTMLDragEvt) => void
-  onDragEnd?: (event: HTMLDragEvt) => void
-  onDragOver?: (event: HTMLDragEvt) => void
-  onDragExit?: (event: HTMLDragEvt) => void
-  onDragEnter?: (event: HTMLDragEvt) => void
+  onDragStart?: OnDrag
+  onDragEnd?: OnDrag
+  onDragOver?: OnDrag
+  onDragExit?: OnDrag
+  onDragEnter?: OnDrag
   // Style props
   style?: React.CSSProperties
   className?: string
@@ -26,11 +28,11 @@ interface DefaultProps {
 
 type MaybeTarget =
   | {
-    isTarget: true
-    onDrop: (event: HTMLDragEvt) => void
+      target: true
+      onDrop: OnDrag
     }
   | {
-    isTarget: false
+      target: false
     }
 
 type Props = DefaultProps & MaybeTarget
@@ -39,24 +41,25 @@ export default class Draggable extends React.Component<Props, State> {
   state = {
     dragging: false,
     hovered: false,
-    variable: this.props.children || ''
+    variable: this.props.children || '',
+    id: uniqueId(`component-`),
   }
 
   node: HTMLDivElement = null
+  dragComponentId: string = JSON.stringify({ variable: this.state.variable, id: this.state.id })
 
   onDragStart = (event: HTMLDragEvt) => {
-    const { variable } = this.state
     const { onDragStart } = this.props
-    event.dataTransfer.setData('id', variable)
+    event.dataTransfer.setData('id', this.dragComponentId)
 
     if (onDragStart) onDragStart(event)
     this.setState({ dragging: true })
   }
 
-  onDragEnd = (_: HTMLDragEvt) => {
+  onDragEnd = (event: HTMLDragEvt) => {
     const { onDragEnd } = this.props
 
-    if (onDragEnd) onDragEnd(_)
+    if (onDragEnd) onDragEnd(event)
     this.setState({ dragging: false })
   }
 
@@ -83,44 +86,46 @@ export default class Draggable extends React.Component<Props, State> {
   }
 
   onDrop = (event: HTMLDragEvt): void => {
+    if (!this.props.target) return
 
-    if (!this.props.isTarget) return
-
-    const dropped = event.dataTransfer.getData('id')
-    if (!dropped || dropped === 'undefined') return
+    const data = event.dataTransfer.getData('id')
+    if (!data || data === 'undefined') return
+    const { variable } = JSON.parse(data)
     const { onDrop } = this.props
     onDrop(event)
 
-    this.setState({ hovered: false, variable: dropped })
+    this.setState({ hovered: false, variable })
   }
 
   render() {
     const { dragging, hovered, variable } = this.state
-    const { className, isTarget, draggingOpacity = 0.1775, style = {}, hoverColor = '#d4d4cf' } = this.props
-    const variableVerbose = this.props.variableVerbose || variable
-    const cursor = dragging ? 'grabbing' : 'grab'
-    const opacity = dragging ? draggingOpacity : 1
-    const backgroundColor = hovered ? hoverColor : 'white'
+    const { className, target, style = {}, draggingClasses, hoveredClasses } = this.props
+
+    const hoveredHoverable = hovered && target
+    const draggingStyle = draggingClasses || 'grabbing o-40 bg-white'
+    const hoverStyle = hoveredClasses || 'bg-silver'
+
+    const classes = classNames(className, 'ba pt2 pb2 pl3 pr3 truncate br4 grab', {
+      [draggingStyle]: dragging,
+      [hoverStyle]: hoveredHoverable,
+    })
 
     return (
       <div
-        className={`ba pt2 pb2 pl3 pr3 truncate br4 ${className}`}
-        draggable={true}
+        draggable
         onDragLeave={this.onDragExit}
         onDragOver={this.onDragOver}
         onDragStart={this.onDragStart}
         onDragEnd={this.onDragEnd}
         onDragEnter={this.onDragEnter}
-        onDrop={isTarget ? this.onDrop : () => this.setState({hovered: false})}
-        style={{
-          opacity,
-          cursor,
-          backgroundColor,
-          ...style
+        onDrop={target ? this.onDrop : () => this.setState({ hovered: false })}
+        style={style}
+        ref={el => {
+          this.node = el
         }}
-        ref={el => {this.node = el}}
+        className={classes}
       >
-        {variableVerbose}
+        {variable}
       </div>
     )
   }
