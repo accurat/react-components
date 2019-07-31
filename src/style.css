@@ -40,3 +40,11 @@ footer {
 .rsg--logo-5 h1 {
   display: none;
 }
+
+.grab {
+  cursor: grab;
+}
+
+.grabbing {
+  cursor: grabbing;
+}
