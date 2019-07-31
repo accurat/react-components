@@ -102,10 +102,10 @@ export default class Draggable extends React.Component<Props, State> {
     const { className, target, style = {}, draggingClasses, hoveredClasses } = this.props
 
     const hoveredHoverable = hovered && target
-    const draggingStyle = draggingClasses || 'grabbing o-40 bg-white'
+    const draggingStyle = draggingClasses || 'o-40 bg-white'
     const hoverStyle = hoveredClasses || 'bg-silver'
 
-    const classes = classNames(className, 'ba pt2 pb2 pl3 pr3 truncate br4 grab', {
+    const classes = classNames(className, 'ba pt2 pb2 pl3 pr3 truncate br4', {
       [draggingStyle]: dragging,
       [hoverStyle]: hoveredHoverable,
     })
@@ -119,7 +119,10 @@ export default class Draggable extends React.Component<Props, State> {
         onDragEnd={this.onDragEnd}
         onDragEnter={this.onDragEnter}
         onDrop={target ? this.onDrop : () => this.setState({ hovered: false })}
-        style={style}
+        style={{
+          cursor: dragging ? 'grabbing' : 'grab',
+          ...style,
+        }}
         ref={el => {
           this.node = el
         }}
