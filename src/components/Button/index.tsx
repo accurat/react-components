@@ -27,15 +27,11 @@ export function Button({
   type = 'button',
   ...props
 }: ButtonProps): JSX.Element {
-  const classes = classNames(
-    className,
-    'flex justify-center items-center pointer outline-transparent',
-    {
-      [disabledStyle]: disabled,
-      [transparentStyle]: transparent && !reset,
-      [defaultStyle]: !transparent && !reset,
-    },
-  )
+  const classes = classNames(className, 'outline-transparent', {
+    [disabledStyle]: disabled,
+    [transparentStyle]: transparent && !reset,
+    [defaultStyle]: !transparent && !reset,
+  })
 
   return (
     <button

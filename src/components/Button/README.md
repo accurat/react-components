@@ -1,9 +1,11 @@
 ```jsx
+import { FlexView } from '../FlexView'
+
 const prompt = () => {
   alert('Clicked!')
 }
 
-<FlexView hAlign="around">
+;<FlexView hAlign="around">
   <Button>Button</Button>
 
   <Button className="br-pill">Pill</Button>

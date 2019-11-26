@@ -79,35 +79,35 @@ export function FlexView({
   function getContentAlignmentClasses(): string {
     const vAlignClasses = column
       ? {
-        top: 'justify-start',
-        center: 'justify-center',
-        bottom: 'justify-end',
-        between: 'justify-between',
-        around: 'justify-around',
-      }
+          top: 'justify-start',
+          center: 'justify-center',
+          bottom: 'justify-end',
+          between: 'justify-between',
+          around: 'justify-around',
+        }
       : {
-        top: 'items-start',
-        center: 'items-center',
-        bottom: 'items-end',
-        baseline: 'items-baseline',
-        stretch: 'items-stretch',
-      }
+          top: 'items-start',
+          center: 'items-center',
+          bottom: 'items-end',
+          baseline: 'items-baseline',
+          stretch: 'items-stretch',
+        }
 
     const hAlignClasses = column
       ? {
-        left: 'items-start',
-        center: 'items-center',
-        right: 'items-end',
-        baseline: 'items-baseline',
-        stretch: 'items-stretch',
-      }
+          left: 'items-start',
+          center: 'items-center',
+          right: 'items-end',
+          baseline: 'items-baseline',
+          stretch: 'items-stretch',
+        }
       : {
-        left: 'justify-start',
-        center: 'justify-center',
-        right: 'justify-end',
-        between: 'justify-between',
-        around: 'justify-around',
-      }
+          left: 'justify-start',
+          center: 'justify-center',
+          right: 'justify-end',
+          between: 'justify-between',
+          around: 'justify-around',
+        }
 
     const vAlignClassObject = vAlign && vAlignClasses[vAlign]
     const hAlignClassObject = hAlign && hAlignClasses[hAlign]

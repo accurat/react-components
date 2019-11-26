@@ -1,11 +1,13 @@
 ```jsx
+import { FlexView } from '../FlexView'
+
 initialState = { emailValid: false }
 
 const checkEmailValidity = validity => {
   setState({ emailValid: validity })
 }
 
-<FlexView hAlign="start" vAlign="around" wrap>
+;<FlexView hAlign="start" vAlign="around" wrap>
   <TextInput className="bw1 ma2" defaultValue="Dummy Text" />
 
   <TextInput

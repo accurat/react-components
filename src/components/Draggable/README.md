@@ -1,5 +1,7 @@
 ```jsx
-<FlexView hAlign="around">
+import { FlexView } from '../FlexView'
+
+;<FlexView hAlign="around">
   <Draggable className="bg-red white">{'Second source'}</Draggable>
   <Draggable>{'First source'}</Draggable>
   <Draggable

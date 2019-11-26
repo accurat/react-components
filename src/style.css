@@ -2,41 +2,22 @@
 * StyleGuide specific css
 */
 
+@font-face {
+  font-family: 'Akkurat';
+  src: url('./assets/fonts/Akkurat.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Akkurat Mono';
+  src: url('./assets/fonts/Akkurat-Mono.ttf') format('truetype');
+}
+
+html,
 body {
-  font-family: 'Roboto Mono', monospace;
+  font: '"Akkurat", sans-serif' !important;
+  background: #1d2936;
 }
 
 footer {
   display: none !important;
-}
-
-.rsg--toolbar-36 {
-  display: none;
-}
-
-.rsg--root-10 {
-  padding: 20px 0 !important;
-}
-
-.rsg--preview-34 {
-  margin-bottom: 25px !important;
-}
-
-.rsg--logo-5 {
-  background: url(./assets/logo.png) no-repeat center !important;
-  background-size: contain !important;
-  height: 30px !important;
-  margin-top: 30px !important;
-  margin-bottom: 10px !important;
-  padding: 0 !important;
-  border: none !important;
-}
-
-.rsg--sidebar-4 {
-  background-color: white !important;
-  border-right: 1px solid black !important;
-}
-
-.rsg--logo-5 h1 {
-  display: none;
 }
