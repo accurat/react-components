@@ -1,47 +1,26 @@
 import * as React from 'react'
 import classNames from 'classnames'
 
-const disabledStyle = 'o-50 pointer-events-none'
-const defaultStyle = 'ph3 pv1 br1 bg-black white b--none'
-const transparentStyle = 'ph3 pv1 br1 bg-transparent black ba bw1 b--black'
-
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children?: React.ReactNode // Array<JSX.Element> | JSX.Element
-  disabled?: boolean
-  transparent?: boolean
-  reset?: boolean
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void
   className?: string
   style?: object
-  type?: 'submit' | 'reset' | 'button'
 }
 
 export function Button({
   children,
-  disabled = false,
-  transparent = false,
-  reset = false,
   className = '',
   style = {},
   onClick = () => {},
-  type = 'button',
   ...props
 }: ButtonProps): JSX.Element {
-  const classes = classNames(className, 'outline-transparent', {
-    [disabledStyle]: disabled,
-    [transparentStyle]: transparent && !reset,
-    [defaultStyle]: !transparent && !reset,
+  const classes = classNames(className, 'button-reset outline-transparent', {
+    'pointer-events-none': props.disabled,
   })
 
   return (
-    <button
-      {...props}
-      disabled={disabled}
-      className={classes}
-      style={style}
-      onClick={onClick}
-      type={type}
-    >
+    <button {...props} className={classes} style={style} onClick={onClick}>
       {children}
     </button>
   )

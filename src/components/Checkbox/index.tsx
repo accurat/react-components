@@ -6,10 +6,6 @@ import {
   ChangelessInputProps,
 } from '../../commons/interfaces'
 
-const disabledStyle = 'o-30 pointer-events-none'
-const inactiveStyle = 'o-50'
-const defaultInputStyle = 'bw1 b--black'
-
 const CheckSvg: React.SFC<SVGProps> = ({ className, style }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -30,60 +26,58 @@ interface SVGProps {
 }
 
 export interface CheckBoxArguments extends InputPropsTypes, ChangelessInputProps {
-  propSvg?: React.SFC<SVGProps>
+  customSvg?: React.SFC<SVGProps>
   onChange?: BooleanChangeFnType
 }
 
 export function Checkbox({
   children,
-  propSvg = null,
+  customSvg = null,
   className = '',
   inputClassName = '',
   style = {},
-  disabled = false,
   checked = false,
   onChange = () => {},
-  reset = false,
   ...props
 }: CheckBoxArguments) {
   function handleChange(event: React.ChangeEvent<HTMLInputElement>): void {
     onChange(event.currentTarget.checked)
   }
-  const classes = classNames(className, 'flex items-center w-fit pointer', {
-    [disabledStyle]: disabled,
-    [inactiveStyle]: !checked && !reset,
+  const classes = classNames(className, 'flex items-center w-fit', {
+    'o-40 pointer-events-none': props.disabled,
   })
 
   const inputClasses = classNames(
     inputClassName,
-    'absolute absolute--fill center input-reset outline-0 pointer',
-    {
-      [defaultInputStyle]: !reset,
-    },
+    'absolute absolute--fill center input-reset outline-transparent',
   )
 
-  const SvgComponent = propSvg || CheckSvg
+  const SvgComponent = customSvg || CheckSvg
 
   return (
     <label style={style} className={classes}>
       <div
-        className="relative"
+        className={`${inputClassName} relative ba`}
         style={{
-          width: 18,
-          minWidth: 18,
-          height: 18,
-          minHeight: 18,
+          borderColor: 'currentColor',
+          boxSizing: 'content-box',
+          minWidth: 16,
+          maxWidth: 30,
+          minHeight: 16,
+          maxHeight: 30,
         }}
       >
         <input
           {...props}
-          className={`ba ${inputClasses}`}
+          className={inputClasses}
           type="checkbox"
           checked={checked}
           onChange={handleChange}
           style={{
-            width: 18,
-            height: 18,
+            minWidth: 16,
+            maxWidth: 30,
+            minHeight: 16,
+            maxHeight: 30,
           }}
         />
         {checked && (

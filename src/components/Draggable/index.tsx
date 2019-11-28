@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { uniqueId } from 'lodash'
+import { uniqueId, noop } from 'lodash'
 import classNames from 'classnames'
 
 type HTMLDragEvt = React.DragEvent<HTMLDivElement>
@@ -7,14 +7,14 @@ type OnDrag = (event: HTMLDragEvt) => void
 
 interface State {
   dragging: boolean
-  hovered: boolean
+  dropping: boolean
   variable: string
 }
 
 interface DefaultProps {
   children: string
-  draggingClasses: string
-  hoveredClasses: string
+  draggingClassName: string
+  dropClassName: string
   // Event Props
   onDragStart?: OnDrag
   onDragEnd?: OnDrag
@@ -40,7 +40,7 @@ type Props = DefaultProps & MaybeTarget
 export default class Draggable extends React.Component<Props, State> {
   state = {
     dragging: false,
-    hovered: false,
+    dropping: false,
     variable: this.props.children || '',
     id: uniqueId(`component-`),
   }
@@ -74,7 +74,7 @@ export default class Draggable extends React.Component<Props, State> {
     const { onDragEnter } = this.props
     event.preventDefault()
     if (onDragEnter) onDragEnter(event)
-    this.setState({ hovered: true })
+    this.setState({ dropping: true })
   }
 
   onDragExit = (event: HTMLDragEvt) => {
@@ -82,7 +82,7 @@ export default class Draggable extends React.Component<Props, State> {
     event.preventDefault()
 
     if (onDragExit) onDragExit(event)
-    this.setState({ hovered: false })
+    this.setState({ dropping: false })
   }
 
   onDrop = (event: HTMLDragEvt): void => {
@@ -94,20 +94,19 @@ export default class Draggable extends React.Component<Props, State> {
     const { onDrop } = this.props
     onDrop(event)
 
-    this.setState({ hovered: false, variable })
+    this.setState({ dropping: false, variable })
   }
 
   render() {
-    const { dragging, hovered, variable } = this.state
-    const { className, target, style = {}, draggingClasses, hoveredClasses } = this.props
+    const { dragging, dropping, variable } = this.state
+    const { className, target, style = {}, draggingClassName, dropClassName } = this.props
 
-    const hoveredHoverable = hovered && target
-    const draggingStyle = draggingClasses || 'o-40 bg-white'
-    const hoverStyle = hoveredClasses || 'bg-silver'
+    const draggingStyle = draggingClassName || 'o-40'
+    const hoverStyle = dropClassName || 'bg-blue'
 
-    const classes = classNames(className, 'ba pt2 pb2 pl3 pr3 truncate br4', {
+    const classes = classNames(className, 'truncate', {
       [draggingStyle]: dragging,
-      [hoverStyle]: hoveredHoverable,
+      [hoverStyle]: dropping && target,
     })
 
     return (
@@ -118,7 +117,7 @@ export default class Draggable extends React.Component<Props, State> {
         onDragStart={this.onDragStart}
         onDragEnd={this.onDragEnd}
         onDragEnter={this.onDragEnter}
-        onDrop={target ? this.onDrop : () => this.setState({ hovered: false })}
+        onDrop={target ? this.onDrop : () => this.setState({ dropping: false })}
         style={{
           cursor: dragging ? 'grabbing' : 'grab',
           ...style,
