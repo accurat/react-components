@@ -3,15 +3,11 @@ declare module "src/components/Button/index" {
     import * as React from 'react';
     export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
         children?: React.ReactNode;
-        disabled?: boolean;
-        transparent?: boolean;
-        reset?: boolean;
         onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
         className?: string;
         style?: object;
-        type?: 'submit' | 'reset' | 'button';
     }
-    export function Button({ children, disabled, transparent, reset, className, style, onClick, type, ...props }: ButtonProps): JSX.Element;
+    export function Button({ children, className, style, onClick, ...props }: ButtonProps): JSX.Element;
 }
 declare module "src/commons/interfaces" {
     export type BooleanChangeFnType = (event: boolean) => void;
@@ -41,10 +37,10 @@ declare module "src/components/Checkbox/index" {
         style?: React.CSSProperties;
     }
     export interface CheckBoxArguments extends InputPropsTypes, ChangelessInputProps {
-        propSvg?: React.SFC<SVGProps>;
+        customSvg?: React.SFC<SVGProps>;
         onChange?: BooleanChangeFnType;
     }
-    export function Checkbox({ children, propSvg, className, inputClassName, style, disabled, checked, onChange, reset, ...props }: CheckBoxArguments): JSX.Element;
+    export function Checkbox({ children, customSvg, className, inputClassName, style, checked, onChange, ...props }: CheckBoxArguments): JSX.Element;
 }
 declare module "src/components/FlexView/index" {
     import * as React from 'react';
@@ -67,7 +63,7 @@ declare module "src/components/Radio/index" {
     export interface RadioProps extends InputPropsTypes, ChangelessInputProps {
         onChange?: BooleanChangeFnType;
     }
-    export function Radio({ children, className, inputClassName, style, disabled, checked, onChange, reset, ...props }: RadioProps): JSX.Element;
+    export function Radio({ children, className, inputClassName, style, checked, onChange, reset, ...props }: RadioProps): JSX.Element;
 }
 declare module "src/components/Select/index" {
     import * as React from 'react';
@@ -86,13 +82,14 @@ declare module "src/components/Select/index" {
         disabled?: boolean;
         autoclose?: boolean;
         onClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
-        reset?: boolean;
     }
     export class Select extends React.Component<SelectProps> {
         componentDidMount(): void;
         componentWillUnmount(): void;
         static defaultProps: {
             autoclose: boolean;
+            childrenClassName: string;
+            scrollable: boolean;
         };
         state: {
             open: boolean;
@@ -109,21 +106,18 @@ declare module "src/components/Select/index" {
 declare module "src/components/TextInput/index" {
     import * as React from 'react';
     import { InputPropsTypes, InputChangeFnType } from "src/commons/interfaces";
-    export interface TextInputpropsType extends InputPropsTypes, React.InputHTMLAttributes<HTMLInputElement> {
+    export interface TextInputPropsType extends InputPropsTypes, React.InputHTMLAttributes<HTMLInputElement> {
         onChange?: InputChangeFnType;
-        type?: 'text' | 'email' | 'password' | 'number' | 'tel' | 'time' | 'date' | 'datetime-local';
-        value?: string | number;
-        defaultValue?: string;
         checkValidity?: (cond: boolean) => void;
     }
-    export function TextInput({ value, defaultValue, className, style, type, onChange, checkValidity, reset, disabled, ...props }: TextInputpropsType): JSX.Element;
+    export function TextInput({ className, style, type, onChange, checkValidity, disabled, ...props }: TextInputPropsType): JSX.Element;
 }
 declare module "src/components/Toggle/index" {
     import { InputPropsTypes, BooleanChangeFnType, ChangelessInputProps } from "src/commons/interfaces";
     interface ToggleProps extends InputPropsTypes, ChangelessInputProps {
         onChange?: BooleanChangeFnType;
     }
-    export function Toggle({ children, className, inputClassName, style, disabled, checked, onChange, reset, }: ToggleProps): JSX.Element;
+    export function Toggle({ children, className, inputClassName, style, disabled, checked, onChange, }: ToggleProps): JSX.Element;
 }
 declare module "@accurat/react-components" {
     export { Button } from "src/components/Button/index";
@@ -140,13 +134,13 @@ declare module "src/components/Draggable/index" {
     type OnDrag = (event: HTMLDragEvt) => void;
     interface State {
         dragging: boolean;
-        hovered: boolean;
+        dropping: boolean;
         variable: string;
     }
     interface DefaultProps {
         children: string;
-        draggingClasses: string;
-        hoveredClasses: string;
+        draggingClassName: string;
+        dropClassName: string;
         onDragStart?: OnDrag;
         onDragEnd?: OnDrag;
         onDragOver?: OnDrag;
@@ -165,18 +159,18 @@ declare module "src/components/Draggable/index" {
     export default class Draggable extends React.Component<Props, State> {
         state: {
             dragging: boolean;
-            hovered: boolean;
+            dropping: boolean;
             variable: string;
             id: string;
         };
         node: HTMLDivElement;
         dragComponentId: string;
-        onDragStart: (event: React.DragEvent<HTMLDivElement>) => void;
-        onDragEnd: (event: React.DragEvent<HTMLDivElement>) => void;
-        onDragOver: (event: React.DragEvent<HTMLDivElement>) => void;
-        onDragEnter: (event: React.DragEvent<HTMLDivElement>) => void;
-        onDragExit: (event: React.DragEvent<HTMLDivElement>) => void;
-        onDrop: (event: React.DragEvent<HTMLDivElement>) => void;
+        onDragStart: (event: HTMLDragEvt) => void;
+        onDragEnd: (event: HTMLDragEvt) => void;
+        onDragOver: (event: HTMLDragEvt) => void;
+        onDragEnter: (event: HTMLDragEvt) => void;
+        onDragExit: (event: HTMLDragEvt) => void;
+        onDrop: (event: HTMLDragEvt) => void;
         render(): JSX.Element;
     }
 }
