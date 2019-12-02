@@ -37,8 +37,8 @@ module.exports = {
     },
     Playground: {
       preview: {
-        background: '#eee',
-        borderColor: '#eee',
+        background: '#fff',
+        borderColor: '#384f68',
         marginBottom: '25px',
         fontFamily: '"Akkurat", sans-serif',
       },

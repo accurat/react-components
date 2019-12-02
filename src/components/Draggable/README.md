@@ -1,15 +1,15 @@
 ```jsx
 import { FlexView } from '../FlexView'
-
-;<FlexView hAlign="around">
-  <Draggable className="bg-red white">{'Second source'}</Draggable>
-  <Draggable>{'First source'}</Draggable>
+;<FlexView hAlign="around" vAlign="center">
+  <Draggable className="bg-blue white pa2">Banana 🍌</Draggable>
+  <Draggable>Apple 🍎</Draggable>
   <Draggable
-    hoveredClasses="bg-blue white"
+    className="ba pa2"
+    dropClassName="bg-red white"
     target
-    onDrop={e => console.log(JSON.parse(e.dataTransfer.getData('id')))}
+    onDrop={e => alert(JSON.stringify(JSON.parse(e.dataTransfer.getData('id')), null, 2))}
   >
-    {'Target'}
+    Target
   </Draggable>
 </FlexView>
 ```

@@ -7,29 +7,26 @@ const checkEmailValidity = validity => {
   setState({ emailValid: validity })
 }
 
-;<FlexView hAlign="start" vAlign="around" wrap>
-  <TextInput className="bw1 ma2" defaultValue="Dummy Text" />
-
+;<FlexView column vAlign="around" wrap>
+  <TextInput className="mv2" defaultValue="Dummy Text" />
   <TextInput
     type="password"
-    className="br-pill b--blue blue bw1 ma2"
-    value="reallycomplexpassword"
+    className="br-pill b--blue blue mv2 tc"
+    defaultValue="strongpassword"
   />
-
-  <FlexView vAlign="center" className="ma2">
+  <div>
     <TextInput
       type="email"
-      defaultValue="Type email"
+      defaultValue="some@domain.com"
       checkValidity={checkEmailValidity}
-      className="mr2 tc bt-0 br-0 bl-0"
+      className="mv2 tc bt-0 br-0 bl-0"
     />
     {state.emailValid && '✓'}
-  </FlexView>
-
-  <TextInput type="date" className="ma2 bw1" defaultValue={4815162342} />
-
-  <TextInput type="time" className="ma2 bw1" defaultValue={4815162342} />
-
-  <TextInput disabled className="ma2" defaultValue="Disabled" />
+  </div>
+  <TextInput type="date" className="mv2 br2 pl2 h2" defaultValue="2019-12-25" />
+  <div>
+    Timer: <TextInput type="time" className="mv2 tc tracked-mega b--none" defaultValue="12:42" />
+  </div>
+  <TextInput disabled className="mv2" defaultValue="Disabled" />
 </FlexView>
 ```

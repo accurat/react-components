@@ -10,18 +10,12 @@ const prompt = () => {
 
   <Button className="br-pill">Pill</Button>
 
-  <Button transparent className="br-pill">
-    Transparent
+  <Button className="bg-blue white">Color</Button>
+
+  <Button className="bg-light-red b--red white hover-bg-red" onClick={prompt}>
+    Click
   </Button>
 
-  <Button className="bg-red">Colorful</Button>
-
-  <Button className="br-pill bg-blue hover-bg-dark-blue" onClick={prompt}>
-    Click me
-  </Button>
-
-  <Button disabled className="bg-blue hover-bg-dark-blue">
-    Disabled
-  </Button>
+  <Button disabled>Disabled</Button>
 </FlexView>
 ```

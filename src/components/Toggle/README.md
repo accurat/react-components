@@ -11,19 +11,19 @@ const changeSelected = item => value => {
 }
 
 ;<FlexView column vAlign="around" className="h5">
-  <p>Selected: {JSON.stringify(state)}</p>
+  <pre>{JSON.stringify(state, null, 2)}</pre>
 
   <Toggle onChange={changeSelected('first')} checked={state.first}>
-    Toggle me
+    Default Toggle
   </Toggle>
 
   <Toggle
     onChange={changeSelected('second')}
     checked={state.second}
-    className="red"
-    inputClassName="bg-red"
+    className="blue"
+    inputClassName={`${state.second ? 'bg-blue white' : ''} br-pill transition`}
   >
-    Colorful Toggle
+    Circular Toggle
   </Toggle>
 
   <Toggle disabled>Disabled Toggle</Toggle>

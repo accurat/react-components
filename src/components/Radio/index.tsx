@@ -6,10 +6,6 @@ import {
   ChangelessInputProps,
 } from '../../commons/interfaces'
 
-const disabledStyle = 'o-30 pointer-events-none'
-const inactiveStyle = 'o-50'
-const defaultInputStyle = 'bw1 b--black bg-black outline-transparent'
-
 export interface RadioProps extends InputPropsTypes, ChangelessInputProps {
   onChange?: BooleanChangeFnType
 }
@@ -19,7 +15,6 @@ export function Radio({
   className = '',
   inputClassName = '',
   style = {},
-  disabled = false,
   checked = false,
   onChange = () => {},
   reset = false,
@@ -29,51 +24,54 @@ export function Radio({
     onChange(event.currentTarget.checked)
   }
 
-  const classes = classNames(className, 'flex items-center w-fit pointer', {
-    [disabledStyle]: disabled,
-    [inactiveStyle]: !checked && !reset,
+  const classes = classNames(className, 'flex items-center w-fit', {
+    'o-40 pointer-events-none': props.disabled,
   })
 
-  const inputClasses = classNames(inputClassName, 'absolute absolute--fill center ba', {
-    [defaultInputStyle]: !reset,
-  })
+  const inputClasses = classNames(
+    inputClassName,
+    'absolute absolute--fill center input-reset outline-transparent',
+  )
 
   return (
     <label className={classes} style={style}>
       <div
-        className="relative"
+        className={`${inputClassName} relative ba`}
         style={{
-          width: 18,
-          minWidth: 18,
-          height: 18,
-          minHeight: 18,
+          borderColor: 'currentColor',
+          boxSizing: 'content-box',
+          minWidth: 16,
+          maxWidth: 30,
+          minHeight: 16,
+          maxHeight: 30,
         }}
       >
         <input
           {...props}
-          className={`${inputClasses} input-reset br-100 pointer`}
+          className={inputClasses}
           type="radio"
           checked={checked}
           onChange={handleChange}
           style={{
-            width: 18,
-            height: 18,
-            // This is here to override the custom `bg-something` you can pass to the input,
-            // since it will affect also the circle on the inside
-            backgroundColor: 'white',
+            minWidth: 16,
+            maxWidth: 30,
+            minHeight: 16,
+            maxHeight: 30,
           }}
         />
         {checked && (
           <div
-            className={`${inputClasses} z-5 m-auto br-100`}
+            className="absolute absolute--fill z-5 m-auto"
             style={{
-              width: 10,
-              height: 10,
+              backgroundColor: 'currentColor',
+              borderRadius: 'inherit',
+              width: '50%',
+              height: '50%',
             }}
           />
         )}
       </div>
-      {children && <div className="ml2 pointer">{children}</div>}
+      {children && <div className="ml2">{children}</div>}
     </label>
   )
 }

@@ -11,16 +11,16 @@ const changeSelected = item => value => {
   <p>Selected: {state.selected}</p>
 
   <Radio onChange={changeSelected(1)} checked={state.selected === 1}>
-    Click me
+    Default Radio
   </Radio>
 
   <Radio
     onChange={changeSelected(2)}
     checked={state.selected === 2}
     className="blue"
-    inputClassName="bg-blue b--blue"
+    inputClassName="br-100 bw1"
   >
-    Colorful Radio
+    Circular Radio
   </Radio>
 
   <Radio disabled>Disabled Radio</Radio>
