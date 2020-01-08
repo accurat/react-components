@@ -8,8 +8,8 @@ const setSelected = selected => () => {
   setState({ selected })
 }
 
-;<FlexView hAlign="around">
-  <Select className="w4 bg-white" label="Go to..">
+;<FlexView className="h3" hAlign="around" vAlign="center">
+  <Select className="w4 pa2" childrenClassName="bg-white shadow-4" label="Go to..">
     <a className="pa2 link db" target="_blank" href="https://www.accurat.it/">
       Accurat Homepage
     </a>
@@ -24,7 +24,7 @@ const setSelected = selected => () => {
     </a>
   </Select>
 
-  <Select className="w4 bg-black white" childrenClassName="bg-black" label={state.selected}>
+  <Select className="w4 bg-black white pa2 br2" childrenClassName="bg-black" label={state.selected}>
     <div className="bg-blue pa2" onClick={setSelected('(·_·)')}>
       (·_·)
     </div>
@@ -39,7 +39,13 @@ const setSelected = selected => () => {
     </div>
   </Select>
 
-  <Select className="w5 bg-white" scrollable autoclose={false} label="Multiple selection">
+  <Select
+    className="w5 bg-white ba pa1"
+    childrenClassName="bg-white"
+    scrollable
+    autoclose={false}
+    label="Multiple selection"
+  >
     <Checkbox className="pa2">Item 1</Checkbox>
     <Checkbox checked className="pa2">
       Item 2

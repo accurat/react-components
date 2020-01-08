@@ -5,34 +5,16 @@ import {
   BooleanChangeFnType,
   ChangelessInputProps,
 } from '../../commons/interfaces'
-
-const CheckSvg: React.SFC<SVGProps> = ({ className, style }) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 21.25 18.58"
-    className={className}
-    style={style}
-  >
-    <polygon
-      points="7.35 18.58 0 11.23 2.83 8.4 7.15 12.72 18.24 0 21.25 2.63 7.35 18.58"
-      fill="inherit"
-    />
-  </svg>
-)
-
-interface SVGProps {
-  className?: string
-  style?: React.CSSProperties
-}
+import { ReactComponent as CheckIcon } from '../../assets/icons/check.svg'
 
 export interface CheckBoxArguments extends InputPropsTypes, ChangelessInputProps {
-  customSvg?: React.SFC<SVGProps>
+  customIcon?: () => JSX.Element
   onChange?: BooleanChangeFnType
 }
 
 export function Checkbox({
   children,
-  customSvg = null,
+  customIcon,
   className = '',
   inputClassName = '',
   style = {},
@@ -43,7 +25,7 @@ export function Checkbox({
   function handleChange(event: React.ChangeEvent<HTMLInputElement>): void {
     onChange(event.currentTarget.checked)
   }
-  const classes = classNames(className, 'flex items-center w-fit', {
+  const classes = classNames(className, 'flex items-center', {
     'o-40 pointer-events-none': props.disabled,
   })
 
@@ -52,7 +34,7 @@ export function Checkbox({
     'absolute absolute--fill center input-reset outline-transparent',
   )
 
-  const SvgComponent = customSvg || CheckSvg
+  const Icon = customIcon || CheckIcon
 
   return (
     <label style={style} className={classes}>
@@ -81,9 +63,9 @@ export function Checkbox({
           }}
         />
         {checked && (
-          <SvgComponent
+          <Icon
             className={`absolute absolute--fill center m-auto pointer-events-none ${inputClasses}`}
-            style={{ width: 10, height: 10, fill: 'currentColor' }}
+            style={{ maxWidth: 10, maxHeight: 10 }}
           />
         )}
       </div>

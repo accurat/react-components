@@ -3,6 +3,7 @@ import classNames from 'classnames'
 import Scrollbars from 'react-custom-scrollbars'
 import { omit } from 'lodash'
 import { InputDefaultProps } from '../../commons/interfaces'
+import { ReactComponent as DownIcon } from '../../assets/icons/down.svg'
 
 export interface DropDownParams {
   style: object
@@ -13,6 +14,7 @@ export interface SelectProps {
   className?: string
   childrenClassName?: string
   style?: object
+  customIcon?: () => JSX.Element
   label?: string
   scrollable?: boolean
   dark?: boolean
@@ -21,12 +23,6 @@ export interface SelectProps {
   autoclose?: boolean
   onClick?: (e: React.MouseEvent<HTMLDivElement>) => void
 }
-
-const DropdownSvg = ({ style }: DropDownParams): JSX.Element => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 4" style={style}>
-    <polygon points="0 0 8 0 4 4 0 0" fill="inherit" />
-  </svg>
-)
 
 export class Select extends React.Component<SelectProps> {
   componentDidMount() {
@@ -78,17 +74,18 @@ export class Select extends React.Component<SelectProps> {
       childrenClassName,
       style,
       label,
+      customIcon,
       scrollable,
       autoclose,
       disabled,
     } = this.props
 
     const { open } = this.state
-    const classes = classNames(className, 'flex justify-between items-center', {
+    const classes = classNames('relative flex justify-between items-center', {
       'o-40 pointer-events-none': disabled,
     })
 
-    const childrenClasses = classNames(childrenClassName, 'absolute z-5 shadow-4', {
+    const childrenClasses = classNames(childrenClassName, 'absolute z-5', {
       dn: !open,
       'w-100': scrollable,
       h5: open && scrollable,
@@ -96,29 +93,36 @@ export class Select extends React.Component<SelectProps> {
 
     const props = omit(this.props, Object.keys(Select.defaultProps))
 
+    const Icon = customIcon || DownIcon
+
     return (
-      <div
-        {...props}
-        ref={el => {
-          this.container = el
-        }}
-        className={`${className} relative`}
-        style={style}
-      >
+      <div className="relative">
         <div
-          onClick={this.handleClick}
-          className={`${classes} ba`}
-          style={{
-            borderColor: 'currentColor',
-            boxSizing: 'content-box',
+          {...props}
+          ref={el => {
+            this.container = el
           }}
+          className={`${className} relative`}
+          style={style}
         >
-          <span>{label}</span>
-          <div className={`mr1 ${open ? 'rotate-180' : ''}`}>
-            <DropdownSvg style={{ width: 10, height: 10, fill: 'currentColor' }} />
+          <div
+            onClick={this.handleClick}
+            className={classes}
+            style={{
+              borderColor: 'currentColor',
+              boxSizing: 'content-box',
+            }}
+          >
+            <span>{label}</span>
+            <div className={` ${open ? 'rotate-180' : ''}`} style={{ minWidth: 10, minHeight: 10 }}>
+              <Icon
+                className="absolute right-0 top-0 bottom-0 m-auto"
+                style={{ maxWidth: 10, maxHeight: 10 }}
+              />
+            </div>
           </div>
         </div>
-        <div className={childrenClasses} style={{ backgroundColor: 'inherit' }}>
+        <div className={childrenClasses}>
           {scrollable ? (
             <Scrollbars className="h-100">
               {React.Children.map(
