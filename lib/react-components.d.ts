@@ -30,17 +30,12 @@ declare module "src/commons/interfaces" {
     export type ChangelessInputProps = WeakenType<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'>;
 }
 declare module "src/components/Checkbox/index" {
-    import * as React from 'react';
     import { InputPropsTypes, BooleanChangeFnType, ChangelessInputProps } from "src/commons/interfaces";
-    interface SVGProps {
-        className?: string;
-        style?: React.CSSProperties;
-    }
     export interface CheckBoxArguments extends InputPropsTypes, ChangelessInputProps {
-        customSvg?: React.SFC<SVGProps>;
+        customIcon?: () => JSX.Element;
         onChange?: BooleanChangeFnType;
     }
-    export function Checkbox({ children, customSvg, className, inputClassName, style, checked, onChange, ...props }: CheckBoxArguments): JSX.Element;
+    export function Checkbox({ children, customIcon, className, inputClassName, style, checked, onChange, ...props }: CheckBoxArguments): JSX.Element;
 }
 declare module "src/components/FlexView/index" {
     import * as React from 'react';
@@ -75,6 +70,7 @@ declare module "src/components/Select/index" {
         className?: string;
         childrenClassName?: string;
         style?: object;
+        customIcon?: () => JSX.Element;
         label?: string;
         scrollable?: boolean;
         dark?: boolean;
