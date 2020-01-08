@@ -27,7 +27,7 @@ export function TextInput({
   disabled = false,
   ...props
 }: TextInputPropsType): JSX.Element {
-  const classes = classNames(className, 'input-reset outline-transparent ba w-fit', {
+  const classes = classNames(className, 'input-reset outline-transparent', {
     'o-40 pointer-events-none': disabled,
   })
 

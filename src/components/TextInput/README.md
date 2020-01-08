@@ -7,7 +7,7 @@ const checkEmailValidity = validity => {
   setState({ emailValid: validity })
 }
 
-;<FlexView column vAlign="around" wrap>
+;<FlexView column vAlign="around" hAlign="left" wrap>
   <TextInput className="mv2" defaultValue="Dummy Text" />
   <TextInput
     type="password"

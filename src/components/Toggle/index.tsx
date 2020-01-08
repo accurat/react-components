@@ -23,7 +23,7 @@ export function Toggle({
     onChange(event.currentTarget.checked)
   }
 
-  const classes = classNames(className, 'flex flex-row justify-start items-center w-fit', {
+  const classes = classNames(className, 'flex flex-row justify-start items-center', {
     'o-40 pointer-event-none': disabled,
   })
 

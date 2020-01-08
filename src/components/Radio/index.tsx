@@ -24,7 +24,7 @@ export function Radio({
     onChange(event.currentTarget.checked)
   }
 
-  const classes = classNames(className, 'flex items-center w-fit', {
+  const classes = classNames(className, 'flex items-center', {
     'o-40 pointer-events-none': props.disabled,
   })
 
