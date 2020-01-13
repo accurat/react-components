@@ -102,11 +102,11 @@ export class Select extends React.Component<SelectProps> {
           ref={el => {
             this.container = el
           }}
+          onClick={this.handleClick}
           className={`${className} relative`}
           style={style}
         >
           <div
-            onClick={this.handleClick}
             className={classes}
             style={{
               borderColor: 'currentColor',
