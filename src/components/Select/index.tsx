@@ -10,7 +10,7 @@ export interface DropDownParams {
 }
 
 export interface SelectProps {
-  children?: React.ReactElement
+  children?: React.ReactNode
   className?: string
   childrenClassName?: string
   style?: object
@@ -127,7 +127,7 @@ export class Select extends React.Component<SelectProps> {
             <Scrollbars className="h-100">
               {React.Children.map(
                 children,
-                (child: React.ReactChild, i: number): JSX.Element => {
+                (child, i): JSX.Element => {
                   return (
                     <div key={i} onClick={autoclose ? this.setClose : null}>
                       {child}
@@ -139,7 +139,7 @@ export class Select extends React.Component<SelectProps> {
           ) : (
             React.Children.map(
               children,
-              (child: React.ReactChild, i: number): JSX.Element => {
+              (child, i): JSX.Element => {
                 return (
                   <div key={i} onClick={autoclose ? this.setClose : null}>
                     {child}

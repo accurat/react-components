@@ -66,7 +66,7 @@ declare module "src/components/Select/index" {
         style: object;
     }
     export interface SelectProps {
-        children?: React.ReactElement;
+        children?: React.ReactNode;
         className?: string;
         childrenClassName?: string;
         style?: object;
