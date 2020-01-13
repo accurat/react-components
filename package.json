@@ -1,6 +1,6 @@
 {
   "name": "@accurat/react-components",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "description": "Collection of React components used for Accurat projects.",
   "main": "lib/react-components.js",
   "types": "lib/react-components.d.ts",
