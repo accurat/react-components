@@ -114,7 +114,10 @@ export class Select extends React.Component<SelectProps> {
             }}
           >
             <span>{label}</span>
-            <div className={` ${open ? 'rotate-180' : ''}`} style={{ minWidth: 10, minHeight: 10 }}>
+            <div
+              className={`flex ${open ? 'rotate-180' : ''}`}
+              style={{ minWidth: 10, minHeight: 10 }}
+            >
               <Icon
                 className="absolute right-0 top-0 bottom-0 m-auto"
                 style={{ maxWidth: 10, maxHeight: 10 }}
