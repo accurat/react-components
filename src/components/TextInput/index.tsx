@@ -1,6 +1,5 @@
 import * as React from 'react'
 import classNames from 'classnames'
-import { HTMLProps } from 'react'
 import { InputPropsTypes, InputChangeFnType } from '../../commons/interfaces'
 
 export interface TextInputPropsType
@@ -27,7 +26,7 @@ export function TextInput({
   disabled = false,
   ...props
 }: TextInputPropsType): JSX.Element {
-  const classes = classNames(className, 'input-reset outline-transparent', {
+  const classes = classNames(className, 'outline-transparent', {
     'o-40 pointer-events-none': disabled,
   })
 
@@ -35,9 +34,7 @@ export function TextInput({
     <input
       {...props}
       className={classes}
-      // fontFamily: inherit is an issue with normalize.css,
-      // it sets `font-family: sans-serif;` to every input/button
-      style={{ ...style, font: 'inherit', backgroundColor: 'inherit' }}
+      style={{ ...style }}
       type={type}
       disabled={disabled}
       onChange={handleChange(onChange, checkValidity)}
