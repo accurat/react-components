@@ -96,12 +96,14 @@ export class Select extends React.Component<SelectProps> {
     const Icon = customIcon || DownIcon
 
     return (
-      <div className="relative">
+      <div
+        className="relative"
+        ref={el => {
+          this.container = el
+        }}
+      >
         <div
           {...props}
-          ref={el => {
-            this.container = el
-          }}
           onClick={this.handleClick}
           className={`${className} relative`}
           style={style}
