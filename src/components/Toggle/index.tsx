@@ -20,6 +20,7 @@ export function Toggle({
   onChange = () => {},
 }: ToggleProps): JSX.Element {
   function handleChange(event: React.ChangeEvent<HTMLInputElement>): void {
+    if (disabled) return
     onChange(event.currentTarget.checked)
   }
 

@@ -81,7 +81,7 @@ export class Select extends React.Component<SelectProps> {
     } = this.props
 
     const { open } = this.state
-    const classes = classNames('relative flex justify-between items-center', {
+    const classes = classNames('relative', {
       'o-40 pointer-events-none': disabled,
     })
 
@@ -97,7 +97,7 @@ export class Select extends React.Component<SelectProps> {
 
     return (
       <div
-        className="relative"
+        className={classes}
         ref={el => {
           this.container = el
         }}
@@ -109,7 +109,7 @@ export class Select extends React.Component<SelectProps> {
           style={style}
         >
           <div
-            className={classes}
+            className="relative flex justify-between items-center"
             style={{
               borderColor: 'currentColor',
               boxSizing: 'content-box',

@@ -9,7 +9,7 @@ const setSelected = selected => () => {
 }
 
 ;<FlexView className="h3" hAlign="around" vAlign="center">
-  <Select className="w4 pa2" childrenClassName="bg-white shadow-4" label="Go to..">
+  <Select className="w4 pa2 pointer" childrenClassName="bg-white shadow-4" label="Go to..">
     <a className="pa2 link db" target="_blank" href="https://www.accurat.it/">
       Accurat Homepage
     </a>
@@ -24,24 +24,37 @@ const setSelected = selected => () => {
     </a>
   </Select>
 
-  <Select className="w4 bg-black white pa2 br2" childrenClassName="bg-black" label={state.selected}>
-    <div className="bg-blue pa2" onClick={setSelected('(·_·)')}>
+  <Select
+    className="w4 bg-black white pa2 br1 pointer"
+    childrenClassName="bg-black br1 overflow-hidden w4 white"
+    label={state.selected}
+  >
+    <div
+      className="bb b--white hover-bg-white hover-black pa2 pointer"
+      onClick={setSelected('(·_·)')}
+    >
       (·_·)
     </div>
-    <div className="bg-purple pa2" onClick={setSelected('(^Д^)')}>
+    <div
+      className="bb b--white hover-bg-white hover-black pa2 pointer"
+      onClick={setSelected('(^Д^)')}
+    >
       (^Д^)
     </div>
-    <div className="bg-orange pa2" onClick={setSelected('(≥o≤)')}>
+    <div
+      className="bb b--white hover-bg-white hover-black pa2 pointer"
+      onClick={setSelected('(≥o≤)')}
+    >
       (≥o≤)
     </div>
-    <div className="bg-green pa2" onClick={setSelected('(o_o)')}>
+    <div className="pa2 hover-bg-white hover-black pointer" onClick={setSelected('(o_o)')}>
       (o_o)
     </div>
   </Select>
 
   <Select
-    className="w5 bg-white ba pa1"
-    childrenClassName="bg-white"
+    className="w5 bg-white ba br2 pa1 pointer"
+    childrenClassName="bg-white shadow-4 br2"
     scrollable
     autoclose={false}
     label="Multiple selection"

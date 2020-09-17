@@ -15,17 +15,19 @@ export function Radio({
   className = '',
   inputClassName = '',
   style = {},
+  disabled = false,
   checked = false,
   onChange = () => {},
   reset = false,
   ...props
 }: RadioProps): JSX.Element {
   function handleChange(event: React.ChangeEvent<HTMLInputElement>): void {
+    if (disabled) return
     onChange(event.currentTarget.checked)
   }
 
   const classes = classNames(className, 'flex items-center', {
-    'o-40 pointer-events-none': props.disabled,
+    'o-40 pointer-events-none': disabled,
   })
 
   const inputClasses = classNames(

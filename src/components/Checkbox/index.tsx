@@ -18,15 +18,17 @@ export function Checkbox({
   className = '',
   inputClassName = '',
   style = {},
+  disabled = false,
   checked = false,
   onChange = () => {},
   ...props
 }: CheckBoxArguments) {
   function handleChange(event: React.ChangeEvent<HTMLInputElement>): void {
+    if (disabled) return
     onChange(event.currentTarget.checked)
   }
   const classes = classNames(className, 'flex items-center', {
-    'o-40 pointer-events-none': props.disabled,
+    'o-40 pointer-events-none': disabled,
   })
 
   const inputClasses = classNames(
