@@ -25,18 +25,24 @@ export interface SelectProps {
 }
 
 export class Select extends React.Component<SelectProps> {
-  componentDidMount() {
-    document.body.addEventListener('mouseup', this.handleOutsideClick, {
-      passive: true,
-    })
-    document.body.addEventListener('touchend', this.handleOutsideClick, {
-      passive: true,
-    })
+  onOpen() {
+    document.body.addEventListener('mouseup', this.handleOutsideClick, { passive: true })
+    document.body.addEventListener('touchend', this.handleOutsideClick, { passive: true })
   }
 
-  componentWillUnmount() {
+  onClose() {
     document.body.removeEventListener('mouseup', this.handleOutsideClick)
     document.body.removeEventListener('touchend', this.handleOutsideClick)
+  }
+
+  componentDidUpdate(prevProps: SelectProps, prevState: any) {
+    if (prevState.open !== this.state.open) {
+      if (this.state.open) {
+        this.onOpen()
+      } else {
+        this.onClose()
+      }
+    }
   }
 
   static defaultProps = {
